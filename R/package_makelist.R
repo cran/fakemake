@@ -1,14 +1,15 @@
 package_makelist <- function() {
-    cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R\",",
-                         "check_return = FALSE),",
+    roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",  
+                           "error = identity)")
+    cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\",",
+                         "check_return = FALSE)),",
                          "cleanr = function(e) print(e))")
     spell_code <- paste("spell <- devtools::spell_check();",
                         "if (length(spell) > 0) {print(spell);",
                         "warning(\"spell check failed\")}")
     covr_code <- paste("co <- covr::package_coverage(path = \".\");",
                        "print(covr::zero_coverage(co)); print(co)")
-    testthat_code <- paste("tryCatch(testthat::test_package(\".\"),",
-                           "error = function(e) print(e))")
+    testthat_code <- "tryCatch(print(devtools::test(\".\")), error = identity)"
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
@@ -20,7 +21,7 @@ package_makelist <- function() {
     dir_tests <- "list.files(\"tests\", full.names = TRUE, recursive = TRUE)"
     pl <- list(list(alias = "roxygen2",
                     target = file.path("log", "roxygen2.Rout"),
-                    code = "roxygen2::roxygenize(\".\")",
+                    code = roxygen_code,
                     prerequisites = dir_r),
                list(alias = "spell",
                     target = file.path("log", "spell.Rout"),
@@ -33,7 +34,7 @@ package_makelist <- function() {
                     prerequisites = r_codes),
                list(alias = "lint",
                     target = file.path("log", "lintr.Rout"),
-                    code = "lintr::lint_package(path = \".\")",
+                    code = "print(lintr::lint_package(path = \".\"))",
                     prerequisites = r_codes),
                list(alias = "testthat",
                     target = file.path("log", "testthat.Rout"),
@@ -45,7 +46,7 @@ package_makelist <- function() {
                     prerequisites = c(dir_r, dir_tests, dir_inst)),
                list(alias = "build",
                     target = "get_pkg_archive_path(absolute = FALSE)",
-                    code = "devtools::build(pkg = \".\", path = \".\")",
+                    code = "print(devtools::build(pkg = \".\", path = \".\"))",
                     sink = "log/build.Rout",
                     prerequisites = c(dir_r, dir_man,
                                       "DESCRIPTION",

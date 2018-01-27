@@ -1,3 +1,11 @@
+# fakemake 1.1.0
+
+* Fixed recursive treatment of argument `verbose` to function `make`.
+* Fixed internal function `package\_makelist` to using `devtools::test` instead 
+  `testthat::test_package` directly (the former is a wrapper to the latter).
+* Now `package\_makelist` is printing output from roxygen2, testthat, cleanr and
+  devtools::build to harmonize logs.
+
 # fakemake 1.0.2
 
 * Disabled RUnit tests for OSX and R Versions older than 3.4.0.
