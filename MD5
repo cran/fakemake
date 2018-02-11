@@ -1,11 +1,11 @@
-32b7018c2358268364e5babc56d4a421 *DESCRIPTION
+37dcb79400c8c558c72685370e29f7b0 *DESCRIPTION
 8f54895584ca5a75bf65ae4d15ab7121 *LICENSE
 e4b14a2dc66c798b7c4a65410afda5c0 *NAMESPACE
-8ac448075a64548cf37a241c7e147784 *NEWS.md
+965505572c02adac69c72b736a6e7689 *NEWS.md
 079b0cd5a2f095ac48112ac47f0b0fdf *R/fakemake-package.R
 b495c6a57e0d7e653566815e866a0dd7 *R/internals.R
-689c4b167d97faf0cffae907f3441925 *R/main.R
-a547d24b3730b6fa3982512dab3da678 *R/package_makelist.R
+94b0dd3394d564e6ff23b1782af41bcd *R/main.R
+aa75518979220cd196aff40715439b68 *R/package_makelist.R
 d921ae522e364ab96b3b259875b7afc5 *R/sink_all.R
 94ecceb3f87633b23bd357907384afff *R/throw.R
 3892c32fabc20e7e9ed616a81fc79ed9 *R/tools.R
@@ -14,7 +14,7 @@ f2a1b3edf6fe74de5f780831ebd3a6ef *README.md
 d75e92fd18edbe782e77c106dffa50e6 *build/vignette.rds
 2685d040d8674dca3427c13e0d5550fa *inst/doc/An_Introduction_to_fakemake.R
 6f762a696da3e72024da230a455fbd53 *inst/doc/An_Introduction_to_fakemake.Rmd
-80c4efb92e3c0deac0817f750451ec17 *inst/doc/An_Introduction_to_fakemake.html
+a712ec207e3935932244570cb44a0ffc *inst/doc/An_Introduction_to_fakemake.html
 8f01fa979d779f78d32015320abf3516 *inst/runit_tests/runit-check_makelist.R
 699448cd5cb0f1e9bedeb5953a2ed6a5 *inst/runit_tests/runit-makefile.R
 dcfd55f7d14b9a32b4cfb41affda49e5 *inst/runit_tests/runit-makelist2igraph.R
