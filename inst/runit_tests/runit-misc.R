@@ -4,7 +4,7 @@ test_package_path <- function() {
     old <- setwd(tempdir())
     on.exit(setwd(old))
     package_path <- file.path(tempdir(), "anRpackage")
-    devtools::create(path = package_path)
+    usethis::create_package(path = package_path)
     result <- get_pkg_archive_path(package_path)
     expectation <- file.path(tempdir(),
                              "anRpackage", "anRpackage_0.0.0.9000.tar.gz")
@@ -20,7 +20,7 @@ test_check_archive <- function() {
     old <- setwd(tempdir())
     on.exit(setwd(old))
     package_path <- file.path(tempdir(), "fakepack")
-    devtools::create(path = package_path)
+    usethis::create_package(path = package_path)
     file.copy(system.file("templates", "throw.R", package = "fakemake"),
               file.path(package_path, "R"))
     roxygen2::roxygenize(package_path)

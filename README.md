@@ -38,8 +38,6 @@ You can install fakemake from github with:
 
 
 ```r
-if (! require("devtools")) install.packages("devtools")
-devtools::install_github("fvafrcu/fakemake")
+if (! require("remotes")) install.packages("remotes")
+remotes::install_gitlab("fvafrCU/fakemake")
 ```
-
-Feel free to fork!

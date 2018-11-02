@@ -4,8 +4,8 @@
 \alias{provide_make_list}
 \title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
-provide_make_list(type = c("minimal", "package", "standard"), prune = TRUE,
-  clean_sink = FALSE)
+provide_make_list(type = c("minimal", "package", "standard"),
+  prune = TRUE, clean_sink = FALSE)
 }
 \arguments{
 \item{type}{The type of \code{makelist}. Use "standard" for a standard

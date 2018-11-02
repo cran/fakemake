@@ -30,7 +30,7 @@ that should be identical to the output of \command{R CMD check}.
 \examples{
 \dontrun{
 package_path <- file.path(tempdir(), "fakepack")
-devtools::create(path = package_path)
+usethis::create_package(path = package_path)
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(package_path, "R"))
 roxygen2::roxygenize(package_path)

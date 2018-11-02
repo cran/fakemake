@@ -23,7 +23,7 @@ The archive file does not have to exist. Use
 }
 \examples{
 package_path <- file.path(tempdir(), "anRpackage")
-devtools::create(path = package_path)
+usethis::create_package(path = package_path)
 print(tarball <- get_pkg_archive_path(package_path))
 file.exists(tarball)
 }

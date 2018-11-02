@@ -25,6 +25,7 @@ package_makelist <- function() {
                        "print(covr::zero_coverage(co)); print(co)")
     testthat_code <- "tryCatch(print(devtools::test(\".\")), error = identity)"
     cyclocomp_code <- "check_cyclomatic_complexity(\".\")"
+    build_code <- "print(pkgbuild::build(path = \".\"), dest_path = \".\")"
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
@@ -65,7 +66,7 @@ package_makelist <- function() {
                     prerequisites = c(dir_r, dir_tests, dir_inst)),
                list(alias = "build",
                     target = "get_pkg_archive_path(absolute = FALSE)",
-                    code = "print(devtools::build(pkg = \".\", path = \".\"))",
+                    code = build_code,
                     sink = "log/build.Rout",
                     prerequisites = c(dir_r, dir_man,
                                       "DESCRIPTION",

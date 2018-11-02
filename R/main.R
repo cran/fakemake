@@ -168,6 +168,10 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #'                 str(make_list <- provide_make_list(type = "minimal"))
 #'                 make(make_list[[1]][["target"]], make_list)
 #'
+#' #% rerun
+#' # need to sleep on fast machine as the file modification times are identical
+#' # otherwise.
+#' Sys.sleep(1)
 #' src <- file.path(tempdir(), "src")
 #' dir.create(src)
 #' cat('print("foo")', file = file.path(src, "foo.R"))
@@ -179,6 +183,7 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' #% make with updated source files
 #' expectation <- make_list[[4]][["target"]]
 #' result <- make(make_list[[4]][["target"]], make_list)
+#' print(result)
 #' RUnit::checkTrue(identical(result, expectation))
 #'
 #' #% rerun

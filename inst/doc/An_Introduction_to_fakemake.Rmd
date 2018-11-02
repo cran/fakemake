@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2018-07-13, 13:34:44
+date: 2018-11-02, 20:52:10
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -78,7 +78,7 @@ Other possible target rule entries are:
 - *sink*: By default, all output of the *code* entry is dumped (well, with
                                                                 **R**'s
                                                                 *sink* function)
-  into a file with the mame given by *target*. If *target* should be created by
+  into a file with the name given by *target*. If *target* should be created by
   the *code* you will want to redirect the output into *sink*.
 - *.PHONY*: If set to TRUE, the target is rebuilt unconditionally every time the
   target is hit (trying to mock GNU make's .PHONY-extension.
@@ -228,7 +228,7 @@ First, we create a package skeleton:
 ``` {r create_package, results = "hide", message = FALSE}
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
-devtools::create(pkg_path)
+usethis::create_package(pkg_path)
 ```
 
 We add a minimal R code file:
@@ -283,7 +283,7 @@ ml[[index]]
 ```
 Note that some of its items are strings giving file names, some are 
 strings that parse as R expressions, and `prerequisites` is a mix of both. 
-Obiously, *fakemake* parses and evaluates these character strings dynamically. 
+Obviously, *fakemake* parses and evaluates these character strings dynamically. 
 
 Let us take a look at the prerequisites for `testthat`:
 ``` {r}
@@ -326,7 +326,7 @@ system.time(suppressMessages(withr::with_dir(pkg_path,
                                                                   ml)))))
 ```
 
-## Changing Files and Rebulding the Package
+## Changing Files and Rebuilding the Package
 Let us take a look at our testing coverage:
 
 ``` {r}

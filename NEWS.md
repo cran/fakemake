@@ -1,3 +1,7 @@
+# fakemake 1.4.0
+
+* Adjusted to devtools 2.0.0 (devtools was split into several packages).
+
 # fakemake 1.3.0
 
 * Added cyclocomp to the "package" makelist.

@@ -37,7 +37,7 @@ touch <- function(path) {
 #' @export
 #' @examples
 #' package_path <- file.path(tempdir(), "anRpackage")
-#' devtools::create(path = package_path)
+#' usethis::create_package(path = package_path)
 #' print(tarball <- get_pkg_archive_path(package_path))
 #' file.exists(tarball)
 get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
@@ -69,7 +69,7 @@ get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
 #' @examples
 #' \dontrun{
 #' package_path <- file.path(tempdir(), "fakepack")
-#' devtools::create(path = package_path)
+#' usethis::create_package(path = package_path)
 #' file.copy(system.file("templates", "throw.R", package = "fakemake"),
 #'           file.path(package_path, "R"))
 #' roxygen2::roxygenize(package_path)

@@ -4,7 +4,8 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(name, make_list, force = FALSE, recursive = force, verbose = TRUE)
+make(name, make_list, force = FALSE, recursive = force,
+  verbose = TRUE)
 }
 \arguments{
 \item{name}{The name or alias of a make target.}
@@ -53,6 +54,10 @@ withr::with_dir(tempdir(), {
                 str(make_list <- provide_make_list(type = "minimal"))
                 make(make_list[[1]][["target"]], make_list)
 
+#\% rerun
+# need to sleep on fast machine as the file modification times are identical
+# otherwise.
+Sys.sleep(1)
 src <- file.path(tempdir(), "src")
 dir.create(src)
 cat('print("foo")', file = file.path(src, "foo.R"))
@@ -64,6 +69,7 @@ make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
 #\% make with updated source files
 expectation <- make_list[[4]][["target"]]
 result <- make(make_list[[4]][["target"]], make_list)
+print(result)
 RUnit::checkTrue(identical(result, expectation))
 
 #\% rerun
