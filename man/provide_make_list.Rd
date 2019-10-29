@@ -4,11 +4,11 @@
 \alias{provide_make_list}
 \title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
-provide_make_list(type = c("minimal", "package", "standard"),
-  prune = TRUE, clean_sink = FALSE)
+provide_make_list(type = c("minimal", "cran", "package"), prune = TRUE,
+  clean_sink = FALSE)
 }
 \arguments{
-\item{type}{The type of \code{makelist}. Use "standard" for a standard
+\item{type}{The type of \code{makelist}. Use "package" for a standard
 package \code{makelist}.}
 
 \item{prune}{Prune the \code{makelist} of \code{NULL} items?}

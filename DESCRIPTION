@@ -1,6 +1,6 @@
 Package: fakemake
 Title: Mock the Unix Make Utility
-Version: 1.4.1
+Version: 1.4.2
 Authors@R: person(given = "Andreas Dominik", family = "Cullmann", 
         email = "fvafrcu@mailbox.org", role = c("aut", "cre"))
 Description: Use R as a minimal build system. This might come in handy
@@ -18,8 +18,8 @@ Imports: MakefileR, callr, withr, utils, igraph, graphics
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-03-29 20:35:32 UTC; qwer
+Packaged: 2019-10-29 21:31:48 UTC; qwer
 Author: Andreas Dominik Cullmann [aut, cre]
 Maintainer: Andreas Dominik Cullmann <fvafrcu@mailbox.org>
 Repository: CRAN
-Date/Publication: 2019-03-29 21:40:17 UTC
+Date/Publication: 2019-10-29 21:50:03 UTC

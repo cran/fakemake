@@ -42,8 +42,9 @@ touch <- function(path) {
 #' file.exists(tarball)
 get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
     pkg <- devtools::as.package(path)
-    tgz <- file.path(pkg$path,
-                     paste0(pkg$package, "_", pkg$version, ".tar.gz"))
+    tgz <- normalizePath(file.path(pkg$path,
+                                   paste0(pkg$package, "_", 
+                                          pkg$version, ".tar.gz")))
     if (! isTRUE(absolute)) tgz <- sub(paste0(getwd(), "/"), "", tgz)
     return(tgz)
 }

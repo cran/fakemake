@@ -13,19 +13,25 @@ check_cyclomatic_complexity <- function(path = ".", max_complexity = 10) {
 }
 
 package_makelist <- function() {
-    roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",
+    roxygen_code  <- paste("print(tryCatch(roxygen2::roxygenize(\".\")),",
                            "error = identity)")
-    cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\",",
+    cleanr_code <- paste("print(tryCatch(cleanr::check_directory(\"R\",",
                          "check_return = FALSE)),",
                          "cleanr = function(e) print(e))")
     spell_code <- paste("spell <- devtools::spell_check();",
                         "if (length(spell) > 0) {print(spell);",
                         "warning(\"spell check failed\")}")
+    # detach package after covr attached it. Required by R-devel 4.0.0 on
+    # win_builder, else the vignette crashes, because covr throws an exception 
+    # due to not loading the readily attached library.
     covr_code <- paste("co <- covr::package_coverage(path = \".\");",
-                       "print(covr::zero_coverage(co)); print(co)")
-    testthat_code <- "tryCatch(print(devtools::test(\".\")), error = identity)"
-    cyclocomp_code <- "check_cyclomatic_complexity(\".\")"
-    build_code <- "print(pkgbuild::build(path = \".\"), dest_path = \".\")"
+                       "print(covr::zero_coverage(co)); print(co);", 
+                       "pkg <- devtools::as.package(\".\")[[\"package\"]];",
+                       "if (pkg %in% .packages()) detach(paste0(\"package:\",",
+                       "pkg), unload = TRUE, character.only = TRUE)")
+    testthat_code <- paste("print(tryCatch(testthat::test_package(\".\"),",
+                           "error = identity))")
+    build_code <- "print(pkgbuild::build(path = \".\", dest_path = \".\"))"
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
@@ -44,10 +50,6 @@ package_makelist <- function() {
                     code = spell_code,
                     prerequisites = c("DESCRIPTION",
                                       file.path("log", "roxygen2.Rout"))),
-               list(alias = "cyclocomp",
-                    target = file.path("log", "cyclocomp.Rout"),
-                    code = cyclocomp_code,
-                    prerequisites = dir_r),
                list(alias = "cleanr",
                     target = file.path("log", "cleanr.Rout"),
                     code = cleanr_code,
@@ -73,7 +75,6 @@ package_makelist <- function() {
                                       "file.path(\"log\", \"lintr.Rout\")",
                                       "file.path(\"log\", \"cleanr.Rout\")",
                                       "file.path(\"log\", \"spell.Rout\")",
-                                      "file.path(\"log\", \"cyclocomp.Rout\")",
                                       "file.path(\"log\", \"covr.Rout\")",
                                       "file.path(\"log\", \"testthat.Rout\")",
                                       "file.path(\"log\", \"roxygen2.Rout\")")),
@@ -83,14 +84,14 @@ package_makelist <- function() {
     return(pl)
 }
 
-log_makelist <- function() {
-    fml <- provide_make_list("package")
+add_log <- function(makelist) {
+    ml <- makelist
     # add the log directory as prerequisite to all targets
-    add_log <- function(x) {
+    add_log_to_all_targets <- function(x) {
         x[["prerequisites"]] <- c(".log.Rout", x[["prerequisites"]])
         return(x)
     }
-    fml <- lapply(fml, add_log)
+    ml <- lapply(ml, add_log_to_all_targets)
     # add the log directory
     log_dir_code <- c("usethis::use_directory(\"log\", ignore = TRUE)")
     a <- list(
@@ -98,5 +99,23 @@ log_makelist <- function() {
                    code = log_dir_code
                    )
               )
-    return(c(a, fml))
+    return(c(a, ml))
+}
+
+add_cyclocomp <- function(makelist) {
+    ml <- makelist
+    # add cyclocomp to build
+    index <- which(sapply(ml, function(x) x["alias"] == "build"))
+    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"cyclocomp.Rout\")")
+    # add the log directory
+    cyclocomp_code <- "check_cyclomatic_complexity(\".\")"
+    dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
+    a <- list(
+               list(alias = "cyclocomp",
+                    target = file.path("log", "cyclocomp.Rout"),
+                    code = cyclocomp_code,
+                    prerequisites = c(dir_r,
+                                      file.path("log", "roxygen2.Rout")))
+              )
+    return(c(a, ml))
 }

@@ -1,3 +1,15 @@
+# fakemake 1.4.2
+
+* Changed coverage code in the package makelists to detach package after
+  covering.
+* Splitted the vignette into two.
+* Fixed target "build" in provide\_make\_list().
+* Fixed tryCatch-Targets to write to log-directory.
+* For verbose = TRUE, the current make target is now being reported.
+* Package make target cyclocomp now requires roxygen.
+* Added a package makelist `cran` that omits cyclocomp and now using it in
+  vignette.
+
 # fakemake 1.4.1
 
 * Suggest rather than import pkgbuild.

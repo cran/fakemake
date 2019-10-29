@@ -1,14 +1,14 @@
 #' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 #'
 #' @inheritParams read_makefile
-#' @param type The type of \code{makelist}. Use "standard" for a standard
+#' @param type The type of \code{makelist}. Use "package" for a standard
 #' package \code{makelist}.
 #' @param prune Prune the \code{makelist} of \code{NULL} items?
 #' @return A \code{makelist}.
 #' @export
 #' @examples
 #' str(provide_make_list("minimal"))
-provide_make_list <- function(type = c("minimal", "package", "standard"),
+provide_make_list <- function(type = c("minimal", "cran", "package"),
                               prune = TRUE,
                               clean_sink = FALSE) {
     type <- match.arg(type)
@@ -20,8 +20,9 @@ provide_make_list <- function(type = c("minimal", "package", "standard"),
                                                package = "fakemake"),
                                    clean_sink)
                  },
-                 "package" = package_makelist(),
-                 "standard" = log_makelist(),
+                 "cran" = add_log(package_makelist()),
+                 "standard" = ,
+                 "package" = add_log(add_cyclocomp(package_makelist())),
                  throw(paste0("type ", type, " not known!"))
                  )
     if (isTRUE(prune)) ml <- prune_list(ml)
@@ -222,6 +223,7 @@ make <- function(name, make_list, force = FALSE, recursive = force,
         }
     } else {
         target <- targets[index]
+        if (isTRUE(verbose)) message("Current target is: ", target, ".")
         prerequisites <- make_list[[index]][["prerequisites"]]
         if (! is.null(prerequisites)) {
             for (p in sort(prerequisites)) {
