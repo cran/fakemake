@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2019-10-27, 10:38:24
+date: 2019-11-02, 00:16:11
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -159,7 +159,7 @@ ml[[i]]["alias"] <- "all"
 withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))
 ```
 This is pointless here, but *target*s might be files down a
-directory tree like 'log/testthat.Rout' when building **R** packages.
+directory tree like 'log/roxygen.Rout' when building **R** packages.
 
 ## Diverting Output / Programmatically Creating a Target Rule's Target
 Target rule b1 dumps its output to b1.Rout:

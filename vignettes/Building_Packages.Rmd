@@ -1,7 +1,7 @@
 ---
 title: "Building Packages Using *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2019-10-29, 22:05:29
+date: 2019-11-02, 00:39:49
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Building Packages}
@@ -57,7 +57,7 @@ It is just there to exemplify the usage of *fakemake*.
 Then we get a package makelist from *fakemake*:
 
 ``` {r}
-ml <- fakemake::provide_make_list("cran")
+ml <- fakemake::provide_make_list("vignette")
 ```
 
 This list is a bit more complex than the minimal example above, so we visualize
@@ -93,15 +93,11 @@ Note that some of its items are strings giving file names, some are
 strings that parse as R expressions, and `prerequisites` is a mix of both. 
 Obviously, *fakemake* parses and evaluates these character strings dynamically. 
 
-Let us take a look at the prerequisites for `testthat`:
+Let us take a look at the prerequisites for `roxygen2`:
 ``` {r}
-index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
+index <- which(sapply(ml, function(x) x["alias"] == "roxygen2"))
 ml[[index]][["prerequisites"]]
 ```
-If you wonder why the only prerequisite for `testthat` shown in the above graphs 
-is `R/throw.R`: there are no files to be found under `tests/` 
-or `inst/` yet. We will come back to this later.
-
 
 ## Building the Package
 
@@ -160,9 +156,6 @@ file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
 
 ```
 
-Now we see - besides other things - that `testthat` has two new prerequisites: 
-`tests/testthat.R` and 
-`tests/testthat/test-throw.R`:
 
 ``` {r,fig.width = 6.8, fig.height = 6.8}
 withr::with_dir(pkg_path, fakemake::visualize(ml))

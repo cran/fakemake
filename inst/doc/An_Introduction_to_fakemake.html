@@ -95,7 +95,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">An Introduction to <em>fakemake</em></h1>
 <h4 class="author">Andreas Dominik Cullmann</h4>
-<h4 class="date">2019-10-27, 10:38:24</h4>
+<h4 class="date">2019-11-02, 00:16:11</h4>
 
 
 
@@ -157,10 +157,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }
 <span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpuCtN2n/a1.Rout  2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/a2.Rout  2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/all.Rout 2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/b1.Rout  2019-10-29 22:31:22</code></pre>
+## /tmp/RtmpM33DKO/a1.Rout  2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/a2.Rout  2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/all.Rout 2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/b1.Rout  2019-11-04 13:25:25</code></pre>
 <p>If we wait for a second and rerun the build process, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
 <span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
@@ -172,10 +172,10 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpuCtN2n/a1.Rout  2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/a2.Rout  2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/all.Rout 2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/b1.Rout  2019-10-29 22:31:22</code></pre>
+## /tmp/RtmpM33DKO/a1.Rout  2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/a2.Rout  2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/all.Rout 2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/b1.Rout  2019-11-04 13:25:25</code></pre>
 <p>Nothing changed. Good. Now, we change one file down the build chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
@@ -186,10 +186,10 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpuCtN2n/a1.Rout  2019-10-29 22:31:23
-## /tmp/RtmpuCtN2n/a2.Rout  2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/all.Rout 2019-10-29 22:31:23
-## /tmp/RtmpuCtN2n/b1.Rout  2019-10-29 22:31:23</code></pre>
+## /tmp/RtmpM33DKO/a1.Rout  2019-11-04 13:25:26
+## /tmp/RtmpM33DKO/a2.Rout  2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/all.Rout 2019-11-04 13:25:26
+## /tmp/RtmpM33DKO/b1.Rout  2019-11-04 13:25:26</code></pre>
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets get rebuilt while a2.Rout stays untouched.</p>
 <p>Had we touched a1.Rout, b1.Rout would not have been rebuilt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))
@@ -201,10 +201,10 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpuCtN2n/a1.Rout  2019-10-29 22:31:25
-## /tmp/RtmpuCtN2n/a2.Rout  2019-10-29 22:31:22
-## /tmp/RtmpuCtN2n/all.Rout 2019-10-29 22:31:25
-## /tmp/RtmpuCtN2n/b1.Rout  2019-10-29 22:31:23</code></pre>
+## /tmp/RtmpM33DKO/a1.Rout  2019-11-04 13:25:27
+## /tmp/RtmpM33DKO/a2.Rout  2019-11-04 13:25:25
+## /tmp/RtmpM33DKO/all.Rout 2019-11-04 13:25:27
+## /tmp/RtmpM33DKO/b1.Rout  2019-11-04 13:25:26</code></pre>
 </div>
 <div id="forcing-the-build" class="section level2">
 <h2>Forcing the Build</h2>
@@ -235,7 +235,7 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## Current target is: b1.Rout.</code></pre>
 <pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
-<p>This is pointless here, but <em>target</em>s might be files down a directory tree like ‘log/testthat.Rout’ when building <strong>R</strong> packages.</p>
+<p>This is pointless here, but <em>target</em>s might be files down a directory tree like ‘log/roxygen.Rout’ when building <strong>R</strong> packages.</p>
 </div>
 <div id="diverting-output-programmatically-creating-a-target-rules-target" class="section level2">
 <h2>Diverting Output / Programmatically Creating a Target Rule’s Target</h2>

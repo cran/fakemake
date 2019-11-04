@@ -1,6 +1,6 @@
 Package: fakemake
 Title: Mock the Unix Make Utility
-Version: 1.4.2
+Version: 1.5.0
 Authors@R: person(given = "Andreas Dominik", family = "Cullmann", 
         email = "fvafrcu@mailbox.org", role = c("aut", "cre"))
 Description: Use R as a minimal build system. This might come in handy
@@ -14,12 +14,12 @@ URL: https://github.com/fvafrCU/fakemake
 Suggests: knitr, rmarkdown, testthat, RUnit, devtools, usethis,
         rprojroot, roxygen2, hunspell, cleanr, lintr, covr, cyclocomp,
         spelling, pkgbuild
-Imports: MakefileR, callr, withr, utils, igraph, graphics
+Imports: MakefileR, callr, withr, utils, igraph, graphics, pkgload
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-10-29 21:31:48 UTC; qwer
+Packaged: 2019-11-04 12:26:00 UTC; qwer
 Author: Andreas Dominik Cullmann [aut, cre]
 Maintainer: Andreas Dominik Cullmann <fvafrcu@mailbox.org>
 Repository: CRAN
-Date/Publication: 2019-10-29 21:50:03 UTC
+Date/Publication: 2019-11-04 20:00:05 UTC

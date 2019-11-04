@@ -13,11 +13,10 @@ check_cyclomatic_complexity <- function(path = ".", max_complexity = 10) {
 }
 
 package_makelist <- function() {
-    roxygen_code  <- paste("print(tryCatch(roxygen2::roxygenize(\".\")),",
-                           "error = identity)")
+    roxygen_code  <- "print(roxygen2::roxygenize(\".\"))"
     cleanr_code <- paste("print(tryCatch(cleanr::check_directory(\"R\",",
-                         "check_return = FALSE)),",
-                         "cleanr = function(e) print(e))")
+                         "check_return = FALSE),",
+                         "cleanr = function(e) print(e)))")
     spell_code <- paste("spell <- devtools::spell_check();",
                         "if (length(spell) > 0) {print(spell);",
                         "warning(\"spell check failed\")}")
@@ -29,8 +28,6 @@ package_makelist <- function() {
                        "pkg <- devtools::as.package(\".\")[[\"package\"]];",
                        "if (pkg %in% .packages()) detach(paste0(\"package:\",",
                        "pkg), unload = TRUE, character.only = TRUE)")
-    testthat_code <- paste("print(tryCatch(testthat::test_package(\".\"),",
-                           "error = identity))")
     build_code <- "print(pkgbuild::build(path = \".\", dest_path = \".\"))"
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
@@ -58,10 +55,6 @@ package_makelist <- function() {
                     target = file.path("log", "lintr.Rout"),
                     code = "print(lintr::lint_package(path = \".\"))",
                     prerequisites = r_codes),
-               list(alias = "testthat",
-                    target = file.path("log", "testthat.Rout"),
-                    code = testthat_code,
-                    prerequisites = c(dir_r, dir_tests, dir_inst)),
                list(alias = "covr",
                     target = file.path("log", "covr.Rout"),
                     code = covr_code,
@@ -76,7 +69,6 @@ package_makelist <- function() {
                                       "file.path(\"log\", \"cleanr.Rout\")",
                                       "file.path(\"log\", \"spell.Rout\")",
                                       "file.path(\"log\", \"covr.Rout\")",
-                                      "file.path(\"log\", \"testthat.Rout\")",
                                       "file.path(\"log\", \"roxygen2.Rout\")")),
                list(alias = "check", target = "log/check.Rout",
                     code = "check_archive_as_cran(get_pkg_archive_path())",
@@ -102,12 +94,44 @@ add_log <- function(makelist) {
     return(c(a, ml))
 }
 
+add_testthat <- function(makelist) {
+    ml <- makelist
+    index <- which(sapply(ml, function(x) x["alias"] == "build"))
+    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"testthat.Rout\")")
+    testthat_code <- "print(testthat::test_dir(\"tests\"))"
+    dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
+    dir_inst <- "list.files(\"inst\", full.names = TRUE, recursive = TRUE)"
+    dir_tests <- "list.files(\"tests\", full.names = TRUE, recursive = TRUE)"
+    a <- list(
+               list(alias = "testthat",
+                    target = file.path("log", "testthat.Rout"),
+                    code = testthat_code,
+                    prerequisites = c(dir_r, dir_tests, dir_inst))
+              )
+    return(c(a, ml))
+}
+
+add_runit <- function(makelist) {
+    ml <- makelist
+    index <- which(sapply(ml, function(x) x["alias"] == "build"))
+    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"runit.Rout\")")
+    runit_code <- "source(file.path(\"tests\", \"runit.R\"))"
+    dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
+    dir_inst <- "list.files(\"inst\", full.names = TRUE, recursive = TRUE)"
+    dir_tests <- "list.files(\"tests\", full.names = TRUE, recursive = TRUE)"
+    a <- list(
+               list(alias = "runit",
+                    target = file.path("log", "runit.Rout"),
+                    code = runit_code,
+                    prerequisites = c(dir_r, dir_tests, dir_inst))
+              )
+    return(c(a, ml))
+}
+
 add_cyclocomp <- function(makelist) {
     ml <- makelist
-    # add cyclocomp to build
     index <- which(sapply(ml, function(x) x["alias"] == "build"))
     ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"cyclocomp.Rout\")")
-    # add the log directory
     cyclocomp_code <- "check_cyclomatic_complexity(\".\")"
     dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
     a <- list(

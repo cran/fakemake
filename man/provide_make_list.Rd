@@ -4,8 +4,8 @@
 \alias{provide_make_list}
 \title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
-provide_make_list(type = c("minimal", "cran", "package"), prune = TRUE,
-  clean_sink = FALSE)
+provide_make_list(type = c("minimal", "cran", "vignette", "standard",
+  "package"), prune = TRUE, clean_sink = FALSE)
 }
 \arguments{
 \item{type}{The type of \code{makelist}. Use "package" for a standard
@@ -25,4 +25,7 @@ Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 }
 \examples{
 str(provide_make_list("minimal"))
+visualize(provide_make_list("minimal"))
+visualize(provide_make_list("vignette"))
+visualize(provide_make_list("package"))
 }

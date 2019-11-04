@@ -1,3 +1,10 @@
+# fakemake 1.5.0
+
+* Package makelist "package" (and its alias "standard") now includes testthat 
+  and runit.
+* Package makelist "cran" (and its alias "vignette") now excludes testthat.
+* Target "cleanr" now catches errors thrown by package cleanr.
+
 # fakemake 1.4.2
 
 * Changed coverage code in the package makelists to detach package after

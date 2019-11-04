@@ -13,7 +13,7 @@ if (is_current_version && ! is_wrong_os) {
     }
 
     if (interactive()) {
-        devtools::load_all(pkg = ".") # needed to use devtools' shim version of
+        pkgload::load_all(".")
         # base's system.file
         unit_dir <- system.file("inst", "runit_tests", package = "fakemake")
     } else {

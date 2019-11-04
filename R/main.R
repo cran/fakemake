@@ -8,7 +8,11 @@
 #' @export
 #' @examples
 #' str(provide_make_list("minimal"))
-provide_make_list <- function(type = c("minimal", "cran", "package"),
+#' visualize(provide_make_list("minimal"))
+#' visualize(provide_make_list("vignette"))
+#' visualize(provide_make_list("package"))
+provide_make_list <- function(type = c("minimal", "cran",  "vignette", 
+                                       "standard", "package"),
                               prune = TRUE,
                               clean_sink = FALSE) {
     type <- match.arg(type)
@@ -20,9 +24,10 @@ provide_make_list <- function(type = c("minimal", "cran", "package"),
                                                package = "fakemake"),
                                    clean_sink)
                  },
+                 "vignette" = ,
                  "cran" = add_log(package_makelist()),
                  "standard" = ,
-                 "package" = add_log(add_cyclocomp(package_makelist())),
+                 "package" = add_runit(add_testthat(provide_make_list("cran"))),
                  throw(paste0("type ", type, " not known!"))
                  )
     if (isTRUE(prune)) ml <- prune_list(ml)
