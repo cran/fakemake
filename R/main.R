@@ -11,7 +11,7 @@
 #' visualize(provide_make_list("minimal"))
 #' visualize(provide_make_list("vignette"))
 #' visualize(provide_make_list("package"))
-provide_make_list <- function(type = c("minimal", "cran",  "vignette", 
+provide_make_list <- function(type = c("minimal", "cran",  "vignette",
                                        "standard", "package"),
                               prune = TRUE,
                               clean_sink = FALSE) {

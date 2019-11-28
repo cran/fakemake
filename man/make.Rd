@@ -4,8 +4,7 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(name, make_list, force = FALSE, recursive = force,
-  verbose = TRUE)
+make(name, make_list, force = FALSE, recursive = force, verbose = TRUE)
 }
 \arguments{
 \item{name}{The name or alias of a make target.}

@@ -26,5 +26,5 @@ sink_all(sink_path, {
          message("a message")
          print("some more output")
 })
-cat(readLines(sink_path), sep = "\\n")
+cat(readLines(sink_path), sep = "\n")
 }

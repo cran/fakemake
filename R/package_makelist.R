@@ -1,17 +1,3 @@
-# stolen from packager
-check_cyclomatic_complexity <- function(path = ".", max_complexity = 10) {
-    res <- NULL
-    cyclocomp <- cyclocomp::cyclocomp_package_dir(path)
-    too_complex <- cyclocomp[["cyclocomp"]] > max_complexity
-    if (any(too_complex)) {
-        hits <- cyclocomp[too_complex, "name"]
-        diff <- cyclocomp[too_complex, "cyclocomp"] - max_complexity
-        res <- paste0("Exceeding maximum cyclomatic complexity of ",
-            max_complexity, " for ", hits, " by ", diff, ".")
-    }
-    return(res)
-}
-
 package_makelist <- function() {
     roxygen_code  <- "print(roxygen2::roxygenize(\".\"))"
     cleanr_code <- paste("print(tryCatch(cleanr::check_directory(\"R\",",
@@ -21,14 +7,15 @@ package_makelist <- function() {
                         "if (length(spell) > 0) {print(spell);",
                         "warning(\"spell check failed\")}")
     # detach package after covr attached it. Required by R-devel 4.0.0 on
-    # win_builder, else the vignette crashes, because covr throws an exception 
+    # win_builder, else the vignette crashes, because covr throws an exception
     # due to not loading the readily attached library.
     covr_code <- paste("co <- covr::package_coverage(path = \".\");",
-                       "print(covr::zero_coverage(co)); print(co);", 
+                       "print(covr::zero_coverage(co)); print(co);",
                        "pkg <- devtools::as.package(\".\")[[\"package\"]];",
                        "if (pkg %in% .packages()) detach(paste0(\"package:\",",
                        "pkg), unload = TRUE, character.only = TRUE)")
-    build_code <- "print(pkgbuild::build(path = \".\", dest_path = \".\"))"
+    build_code <- paste("print(pkgbuild::build(path = \".\",",
+                        "dest_path = \".\", vignettes = FALSE))")
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
@@ -97,7 +84,8 @@ add_log <- function(makelist) {
 add_testthat <- function(makelist) {
     ml <- makelist
     index <- which(sapply(ml, function(x) x["alias"] == "build"))
-    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"testthat.Rout\")")
+    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]],
+                                        "file.path(\"log\", \"testthat.Rout\")")
     testthat_code <- "print(testthat::test_dir(\"tests\"))"
     dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
     dir_inst <- "list.files(\"inst\", full.names = TRUE, recursive = TRUE)"
@@ -114,7 +102,8 @@ add_testthat <- function(makelist) {
 add_runit <- function(makelist) {
     ml <- makelist
     index <- which(sapply(ml, function(x) x["alias"] == "build"))
-    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"runit.Rout\")")
+    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]],
+                                        "file.path(\"log\", \"runit.Rout\")")
     runit_code <- "source(file.path(\"tests\", \"runit.R\"))"
     dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
     dir_inst <- "list.files(\"inst\", full.names = TRUE, recursive = TRUE)"
@@ -124,22 +113,6 @@ add_runit <- function(makelist) {
                     target = file.path("log", "runit.Rout"),
                     code = runit_code,
                     prerequisites = c(dir_r, dir_tests, dir_inst))
-              )
-    return(c(a, ml))
-}
-
-add_cyclocomp <- function(makelist) {
-    ml <- makelist
-    index <- which(sapply(ml, function(x) x["alias"] == "build"))
-    ml[[index]][["prerequisites"]] <- c(ml[[index]][["prerequisites"]], "file.path(\"log\", \"cyclocomp.Rout\")")
-    cyclocomp_code <- "check_cyclomatic_complexity(\".\")"
-    dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
-    a <- list(
-               list(alias = "cyclocomp",
-                    target = file.path("log", "cyclocomp.Rout"),
-                    code = cyclocomp_code,
-                    prerequisites = c(dir_r,
-                                      file.path("log", "roxygen2.Rout")))
               )
     return(c(a, ml))
 }

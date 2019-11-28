@@ -1,3 +1,8 @@
+# fakemake 1.6.0
+
+* Added new functions get\_target(), remove\_target() and add\_target() for
+  manipulating makelists.
+
 # fakemake 1.5.0
 
 * Package makelist "package" (and its alias "standard") now includes testthat 
