@@ -11,7 +11,7 @@ provide_make_list(
 )
 }
 \arguments{
-\item{type}{The type of \code{makelist}. Use "package" for a standard
+\item{type}{The type of \code{makelist}.
 package \code{makelist}.}
 
 \item{prune}{Prune the \code{makelist} of \code{NULL} items?}
@@ -29,6 +29,4 @@ Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 \examples{
 str(provide_make_list("minimal"))
 visualize(provide_make_list("minimal"))
-visualize(provide_make_list("vignette"))
-visualize(provide_make_list("package"))
 }

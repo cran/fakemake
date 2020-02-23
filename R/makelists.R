@@ -1,37 +1,40 @@
-#' Manipulate \code{makelist} Targets
-#'
-#' Get, add or remove targets from/to a \code{makelist}.
-#' @name makelist_targets
-NULL
-
-
-#' @describeIn makelist_targets Get a single target from a \code{makelist} by
+#' Get a Makelist's Target
+#' 
+#' Get a single target from a \code{makelist} by
 #' alias.
 #' @param makelist A list for
-#' \code{\link[fakemake:make]{fakemake::make}}.
+#' \code{\link[fakemake:make]{make}}.
 #' @param alias The alias of the target in question.
 #' @return A list (the target requested).
+#' @family functions to manipulate makelists
 #' @export
 #' @examples
-#' ml <- provide_make_list(type  = "cran")
-#' length(ml)
-#' t <- get_target(ml, "check")
+#' ml <- provide_make_list()
+#' visualize(ml, root = "all.Rout")
+#' i <- which(sapply(ml, "[[", "target") == "b1.Rout")
+#' ml[[i]]["alias"] <- "b1"
+#' t <- get_target(ml, "b1")
 #' ml <- remove_target(ml, t[["target"]])
-#' length(ml)
+#' visualize(ml)
 #' ml <- add_target(ml, target = t[["target"]], code = t[["code"]],
-#'                 sink = t[["sink"]])
-#' all.equal(ml[[1]], provide_make_list(type  = "cran")[[1]])
+#'                 sink = t[["sink"]],
+#'                 prerequisite_to = "a1.Rout", alias = NULL)
+#' all.equal(ml, provide_make_list())
 get_target <- function(makelist, alias) {
     index <- which(sapply(makelist, function(x) x["alias"] == alias))
     return(makelist[[index]])
 }
 
-#' @describeIn makelist_targets Remove a target and all its appearances as
+#' Remove a Target From a Makelist
+#'
+#' Remove a target and all its appearances as
 #' other targets' dependencies from a \code{makelist}.
-#' @inheritParams get_target
+#' @family functions to manipulate makelists
+#' @param makelist A list for
+#' \code{\link[fakemake:make]{make}}.
 #' @param target The target to remove from \code{makelist}.
 #' @return A list for
-#' \code{\link[fakemake:make]{fakemake::make}}.
+#' \code{\link[fakemake:make]{make}}.
 #' @export
 remove_target <- function(makelist, target) {
     ml <- makelist
@@ -53,8 +56,13 @@ remove_target <- function(makelist, target) {
     return(ml)
 }
 
-#' @describeIn makelist_targets Add a Target to an Existing \code{makelist}.
-#' @inheritParams remove_target
+#' Add a Target to a Makelist
+#'
+#' Add a target to an existing \code{makelist}.
+#' @family functions to manipulate makelists
+#' @param makelist A list for
+#' \code{\link[fakemake:make]{make}}.
+#' @param target The target to remove from \code{makelist}.
 #' @param code The code for the new target.
 #' @param prerequisites The prerequisites for the new target.
 #' @param prerequisite_to The targets the new target is a prerequisite to.
@@ -63,7 +71,7 @@ remove_target <- function(makelist, target) {
 #' @param alias The alias for the new target.
 #' @param sink The sink for the new target.
 #' @return A list for
-#' \code{\link[fakemake:make]{fakemake::make}}.
+#' \code{\link[fakemake:make]{make}}.
 #' @export
 #' @aliases add_target
 add_target <- function(makelist, target, code, prerequisites = NULL,
@@ -89,12 +97,15 @@ add_target <- function(makelist, target, code, prerequisites = NULL,
         }
     }
     if (!any(sapply(ml, function(x) x[["target"]] == target))) {
-        a <- list(list(alias = alias,
-                       target = target,
-                       code = code,
-                       sink = sink,
-                       prerequisites = prerequisites
-                       ))
+        a <- list(alias = alias,
+                  target = target,
+                  code = code,
+                  sink = sink,
+                  prerequisites = prerequisites
+                  )
+        # remove list items set to NULL
+        a <- a[sapply(a, function(x) !is.null(x))]
+        a <- list(a)
     } else {
         a <- NULL
     }

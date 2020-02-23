@@ -22,8 +22,11 @@ The archive file does not have to exist. Use
 \code{file.exists(get_pkg_archive_path())} to test existence.
 }
 \examples{
+\dontrun{
 package_path <- file.path(tempdir(), "anRpackage")
 usethis::create_package(path = package_path)
 print(tarball <- get_pkg_archive_path(package_path))
 file.exists(tarball)
 }
+}
+\keyword{internal}

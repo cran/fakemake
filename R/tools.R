@@ -5,6 +5,7 @@
 #' @param path Path to the file to be touched
 #' @return The return value of \code{\link{file.copy}}.
 #' @export
+#' @keywords internal
 #' @examples
 #' file <- tempfile()
 #' touch(file)
@@ -35,13 +36,17 @@ touch <- function(path) {
 #' @param absolute Return the absolute path?
 #' @return Path to the package's archive file.
 #' @export
+#' @keywords internal
 #' @examples
+#' \dontrun{
 #' package_path <- file.path(tempdir(), "anRpackage")
 #' usethis::create_package(path = package_path)
 #' print(tarball <- get_pkg_archive_path(package_path))
 #' file.exists(tarball)
+#' }
 get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
 
+    .Deprecated("packager::get_pkg_archive_path")
     pkg <- devtools::as.package(path)
     tgz <- normalizePath(file.path(pkg$path,
                                    paste0(pkg$package, "_",
@@ -69,6 +74,7 @@ get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
 #' and exit status of the check.
 #' (see \code{\link[callr:rcmd]{callr::rcmd}}).
 #' @export
+#' @keywords internal
 #' @examples
 #' \dontrun{
 #' package_path <- file.path(tempdir(), "fakepack")
@@ -81,6 +87,7 @@ get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
 #' print(check_archive(tarball))
 #' }
 check_archive <- function(path, cmdargs = NULL) {
+    .Deprecated("packager::check_archive")
     # heavily borrowing from rcmdcheck::rcmdcheck()
     withr::with_dir(dirname(path),
                     out <- callr::rcmd_safe("check",
@@ -95,7 +102,9 @@ check_archive <- function(path, cmdargs = NULL) {
 #' A Convenience Wrapper to \code{\link{check_archive}}
 #'
 #' @export
+#' @keywords internal
 #' @inheritParams check_archive
 check_archive_as_cran <- function(path) {
+    .Deprecated("packager::check_archive_as_cran")
     return(check_archive(path, cmdargs = "--as-cran"))
 }

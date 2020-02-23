@@ -1,4 +1,5 @@
 package_makelist <- function() {
+    .Deprecated("packager::get_package_makelist")
     roxygen_code  <- "print(roxygen2::roxygenize(\".\"))"
     cleanr_code <- paste("print(tryCatch(cleanr::check_directory(\"R\",",
                          "check_return = FALSE),",

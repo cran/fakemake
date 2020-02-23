@@ -23,10 +23,14 @@ is_to_be_made <- function(target, prerequisites, is_phony) {
             if (is.null(prerequisites)) {
                 is_to_be_made <- FALSE
             } else {
-                if (any(file.mtime(prerequisites) > file.mtime(target))) {
-                    is_to_be_made <- TRUE
+                if (all(file.exists(prerequisites))) {
+                    if (any(file.mtime(prerequisites) > file.mtime(target))) {
+                        is_to_be_made <- TRUE
+                    } else {
+                        is_to_be_made <- FALSE
+                    }
                 } else {
-                    is_to_be_made <- FALSE
+                    is_to_be_made <- TRUE
                 }
             }
         }

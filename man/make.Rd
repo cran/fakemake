@@ -4,7 +4,14 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(name, make_list, force = FALSE, recursive = force, verbose = TRUE)
+make(
+  name,
+  make_list,
+  force = FALSE,
+  recursive = force,
+  verbose = FALSE,
+  dry_run = FALSE
+)
 }
 \arguments{
 \item{name}{The name or alias of a make target.}
@@ -17,6 +24,8 @@ make(name, make_list, force = FALSE, recursive = force, verbose = TRUE)
 \item{recursive}{Force the target to be build recursively (see \emph{Note})?}
 
 \item{verbose}{Be verbose?}
+
+\item{dry_run}{Run dry? Mock \command{make's} -n option.}
 }
 \value{
 A character vector containing the targets made during the current
@@ -43,6 +52,14 @@ withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE,
 # forcing all.Rout recursively
 withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 
+# show files
+dir(tempdir(), pattern = ".*\\\\.Rout")
+
+# dry run
+file.remove(dir(tempdir(), pattern = ".*\\\\.Rout", full.names = TRUE))
+withr::with_dir(tempdir(), print(make("all.Rout", make_list,
+                                      dry_run = TRUE)))
+dir(tempdir(), pattern = ".*\\\\.Rout")
 \dontshow{
 is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin",
                                                             R.version$os)

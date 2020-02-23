@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{visualize}
 \alias{visualize}
-\title{Parse a \code{Makelist}, Convert it Into an \code{Igraph} and Plot it}
+\title{Visualize a Makelist}
 \usage{
 visualize(make_list, root = NULL)
 }
@@ -15,10 +15,10 @@ visualize(make_list, root = NULL)
 Invisibly an \pkg{igraph} representation of the \code{makelist}.
 }
 \description{
-Parse a \code{Makelist}, Convert it Into an \code{Igraph} and Plot it
+Parse a \code{makelist}, convert it into an \code{igraph} and plot it.
 }
 \examples{
-str(ml <- provide_make_list("package"))
+str(ml <- provide_make_list())
 visualize(ml)
-visualize(ml, root = "log/check.Rout")
+visualize(ml, root = "all.Rout")
 }

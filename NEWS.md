@@ -1,7 +1,18 @@
+# fakemake 1.7.0
+
+* Functions `check_archive`, `check_archive_as_cran` and `get_pkg_archive_path`
+  are now deprecated: they have moved to CRAN package `packager`. Their
+  documentation is tagged as internal.
+* Tagged documentation for functions `read_makefile`, `write_makefile`,
+  `sink_all` and `touch` as internal.
+* Changed the default to function `make`'s `verbose` option to `FALSE`.
+* Added arguemnt `dry_run` to function `make` that mocks make's -n option 
+  (i.e. "Don't actually run any recipe; just print them.").
+
 # fakemake 1.6.0
 
-* Added new functions get\_target(), remove\_target() and add\_target() for
-  manipulating makelists.
+* Added  functions `add_target`, `get_target` and `remove_target` to facilitate
+  the manipulation of makelists.
 
 # fakemake 1.5.0
 

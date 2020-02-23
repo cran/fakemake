@@ -7,6 +7,7 @@
 #' @param code The code to be executed.
 #' @return \code{\link[base:invisible]{Invisibly}} \code{\link{NULL}}.
 #' @export
+#' @keywords internal
 #' @examples
 #' sink_path  <- file.path(tempdir(), "sink_all.txt")
 #' sink_all(sink_path, {

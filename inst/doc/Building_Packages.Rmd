@@ -1,7 +1,7 @@
 ---
-title: "Building Packages Using *fakemake*"
+title: "Building **R**  Packages Using *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2019-11-02, 00:39:49
+date: 2020-02-23, 16:23:49
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Building Packages}
@@ -26,20 +26,21 @@ references:
     year: 2002
 ---
 
-# Building **R** Packages Using *Fakemake*
-
 We will now look at *fakemake*'s main purpose: building packages.
-First, we need to create a sample package.
+
+__There's a more elaborated vignette coming with package `packager`. Please see 
+[packager's vignette](https://cran.r-project.org/package=packager/vignettes/An_Introduction_to_packager.html).__
+
 
 ## Creating the Package
-First, we create a package skeleton:
+First, we need to create a sample package, so we create a package skeleton:
 ``` {r create_package, results = "hide", message = FALSE}
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
 usethis::create_package(pkg_path)
 ```
 
-We add a minimal R code file:
+And add a minimal R code file:
 
 ``` {r}
 file.copy(system.file("templates", "throw.R", package = "fakemake"),

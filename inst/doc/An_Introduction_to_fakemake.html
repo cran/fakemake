@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -69,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -94,24 +95,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">An Introduction to <em>fakemake</em></h1>
 <h4 class="author">Andreas Dominik Cullmann</h4>
-<h4 class="date">2019-11-02, 00:16:11</h4>
+<h4 class="date">2020-01-10, 14:19:59</h4>
 
 
 
 <div id="why-mock-the-unix-make-utility" class="section level1">
 <h1>Why Mock the Unix Make Utility?</h1>
-<p>There are <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software">many</a> <a href="https://en.wikipedia.org/wiki/Build_automation">build systems</a>, and more uses for build systems <span class="citation">(see Powers et al. 2002, sec. 11.10 and 11.11)</span>.</p>
+<p>There are <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software">many</a> <a href="https://en.wikipedia.org/wiki/Build_automation">build systems</a>, and even more uses for build systems <span class="citation">(see Powers et al. 2002, sec. 11.10 and 11.11)</span>.</p>
 <p>I have been using the <a href="https://en.wikipedia.org/wiki/Make_(software)">unix make utility</a> when developing R packages since 2012. But sometimes I get caught on a machine where <em>make</em> is not available and where I am not entitled to install it<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
 <p>This is why I wrote <em>fakemake</em>: to build an R package conditionally on the modification times of (file) dependencies without having to rely on external software. <strong>If you have any proper build system at hand: stick to it, do not use <em>fakemake</em>.</strong></p>
 </div>
 <div id="withr-and-knitr" class="section level1">
 <h1><em>withr</em> and <em>knitr</em></h1>
-<p>Throughout this vignette I use <strong>R</strong>’s temporary directory, often by using <code>withr::with_dir(tempdir(), ...)</code>. Because this is a vignette and the codes are examples. In real life, we would skip the temporary directory stuff.</p>
-<p>Vignettes are built using <em>knitr</em>, which itself uses <code>sink()</code>. As <code>sink()</code> is central to <em>fakemake</em> for redirecting output to files in the make chain, I have to disable some of <em>knitr</em>’s output here and there. Don’t worry, it’s just because <em>knitr</em> and <em>fakemake</em> both want to use <code>sink()</code> exclusively and it only affects vignettes built with <em>knitr</em>.</p>
+<p>Throughout this vignette I use <strong>R</strong><code>s temporary directory, often by using</code>withr::with_dir(tempdir(), …)`. Because this is a vignette and the codes are examples. In real life, we would skip the temporary directory stuff.</p>
+<p>This vignette is built using <em>knitr</em>, which itself uses <code>sink()</code>. As <code>sink()</code> is central to <em>fakemake</em> for redirecting output to files in the make chain, I have to disable some of <em>knitr</em><code>s output here and there.  Don</code>t worry, it<code>s just because *knitr* and *fakemake* both want to use</code>sink()` exclusively and it only affects vignettes built with <em>knitr</em>.</p>
 </div>
 <div id="makelists" class="section level1">
 <h1>Makelists</h1>
-<p>A makelist is the <em>fakemake</em>`s representation of a Makefile. It’s just a list of lists. Look at the minimal makelist provided by <em>fakemake</em>:</p>
+<p>A makelist is <em>fakemake</em><code>s representation of a Makefile. It</code>s just a list of lists. Look at the minimal makelist provided by <em>fakemake</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>## List of 4
 ##  $ :List of 3
@@ -128,26 +129,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##  $ :List of 2
 ##   ..$ target: chr &quot;b1.Rout&quot;
 ##   ..$ code  : chr &quot;print(\&quot;b1\&quot;)&quot;</code></pre>
-<p>Each sublist represents a Makefile’s target rule and has several items: at least a <em>target</em> and either <em>code</em> or <em>prerequisites</em>, possibly both. This makelist would still be a Makefile’s valid representation if target rule #3 with target “a1.Rout” had no (or an empty) <em>code</em> entry.</p>
+<p>Each sublist represents a Makefile<code>s target rule and has several items: at least a *target* and either *code* or *prerequisites*, possibly both. This makelist would still be a Makefile</code>s valid representation if target rule #3 with target “a1.Rout” had no (or an empty) <em>code</em> item.`</p>
 <p>Other possible target rule entries are:</p>
 <ul>
-<li><em>alias</em>: An alias to target that would be easier to remember and/or type.</li>
-<li><em>sink</em>: By default, all output of the <em>code</em> entry is dumped (well, with <strong>R</strong>’s <em>sink</em> function) into a file with the name given by <em>target</em>. If <em>target</em> should be created by the <em>code</em> you will want to redirect the output into <em>sink</em>.</li>
-<li><em>.PHONY</em>: If set to TRUE, the target is rebuilt unconditionally every time the target is hit (trying to mock GNU make’s .PHONY-extension.</li>
+<li><em>alias</em>: An alias to target that would be easier to remember and/or type (we will come back to his <a href="#aliases">later</a>).</li>
+<li><em>sink</em>: By default, all output of the <em>code</em> item is dumped (well, with <strong>R</strong>`s <em>sink</em> function) into a file with the name given by <em>target</em>. If <em>target</em> should be created by the <em>code</em> you will want to redirect the output into <em>sink</em> (we will come back to his <a href="#diverting">later</a>).</li>
+<li><em>.PHONY</em>: If set to TRUE, the target is rebuilt unconditionally every time the target is hit (trying to mock GNU make`s .PHONY-extension) (we will come back to his <a href="#phony">later</a>.</li>
 </ul>
 </div>
 <div id="a-minimal-example" class="section level1">
 <h1>A Minimal Example</h1>
 <p>Suppose we would have a minimal makelist:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml &lt;-<span class="st"> </span>fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>We can visualize the makelist (giving the <code>root</code> is optional, in this case it just makes a neater plot):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">visualize</span>(ml, <span class="dt">root =</span> <span class="st">&quot;all.Rout&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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TlpaVVDQ3uee+2enrQUFdT3ddvz4aUSx8yMWTRn3uqfbn957aUbZXvnTUyg+Pl7aYcWKU8eOlYiiaDCI0dHHly9PkJbb71avN3R8iN4fDiwfjmDdWLXql35+rg895Llt2+x//rO4qUnbxxtK71XZ+doBD7eGugbnqUHX5TJD4e2773QWBP1nn+VERfkSkUxGq1eH7duX09am7/hyxd7PUcHqILButL9CNzLSWxSpoUHoff92CxcuJKJytRj7u2+ULk2v71kYF2/rGzRj8uTJRFRV1aTTGaTTQiIKClLq9WJNTfe/EoChAYH1RqvVe3k5eXk59XH/mTNnEtGzH3qs/6Jpst+hq+Ve8dnLv/76a2mrt7ezQmGTlVUjfSkIemdnO2/vuy8IFkWRiPT6zlflRVynt2a4itiNtra7vx0+eLDwgw9mtJ/C6XQGIjIY7vmJ37z54vDh9qtXhxGR9Au01NT0K1cuqtVqZaLTt9/Kbt4k6V2XtrbylStDd+/OevxxP5mMTp68uXZtuHROOGKE4/HjN3x9XffvzyOiysrG4GAlEXl5ORUV1bu62vv44IX5VskmJibG3GOwLDIZHTp0NSOjOi2taswY10WL7v7B0OvX7+zceeXMmVsymWz0aBdPz7uHtY8+SrtzR5g/f3xOTu2WLZcKCuoEwWbu3KnPPDNj3rwHjxwp/vzzvIkTRwQGuhPR7Nlj0tNVR49eKynRaDRt69Y90h7Yhg0p8fHFS5f+IjW1XKl0iIgYZWsrLy9vjItLCwhwCwkZaa4JgcHAhz8AMMJzMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYPR/By4OOUvlnrMAAAAASUVORK5CYII=" /><!-- --></p>
 <div id="building-and-rebuilding" class="section level2">
 <h2>Building and Rebuilding</h2>
 <p>Now build the “all.Rout” <em>target</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>We can see the files created:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">show_file_mtime &lt;-<span class="st"> </span>function(<span class="dt">files =</span> <span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>,
@@ -156,88 +156,80 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }
 <span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/Rtmpf0rak4/a1.Rout  2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/a2.Rout  2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/all.Rout 2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/b1.Rout  2019-11-28 16:25:04</code></pre>
+## /tmp/Rtmpaw7hG6/a1.Rout  2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/a2.Rout  2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/all.Rout 2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/b1.Rout  2020-02-23 16:54:35</code></pre>
 <p>If we wait for a second and rerun the build process, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
 <span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/Rtmpf0rak4/a1.Rout  2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/a2.Rout  2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/all.Rout 2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/b1.Rout  2019-11-28 16:25:04</code></pre>
+## /tmp/Rtmpaw7hG6/a1.Rout  2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/a2.Rout  2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/all.Rout 2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/b1.Rout  2020-02-23 16:54:35</code></pre>
 <p>Nothing changed. Good. Now, we change one file down the build chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/Rtmpf0rak4/a1.Rout  2019-11-28 16:25:05
-## /tmp/Rtmpf0rak4/a2.Rout  2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/all.Rout 2019-11-28 16:25:05
-## /tmp/Rtmpf0rak4/b1.Rout  2019-11-28 16:25:05</code></pre>
+## /tmp/Rtmpaw7hG6/a1.Rout  2020-02-23 16:54:36
+## /tmp/Rtmpaw7hG6/a2.Rout  2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/all.Rout 2020-02-23 16:54:36
+## /tmp/Rtmpaw7hG6/b1.Rout  2020-02-23 16:54:36</code></pre>
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets get rebuilt while a2.Rout stays untouched.</p>
 <p>Had we touched a1.Rout, b1.Rout would not have been rebuilt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/Rtmpf0rak4/a1.Rout  2019-11-28 16:25:06
-## /tmp/Rtmpf0rak4/a2.Rout  2019-11-28 16:25:04
-## /tmp/Rtmpf0rak4/all.Rout 2019-11-28 16:25:06
-## /tmp/Rtmpf0rak4/b1.Rout  2019-11-28 16:25:05</code></pre>
+## /tmp/Rtmpaw7hG6/a1.Rout  2020-02-23 16:54:37
+## /tmp/Rtmpaw7hG6/a2.Rout  2020-02-23 16:54:35
+## /tmp/Rtmpaw7hG6/all.Rout 2020-02-23 16:54:37
+## /tmp/Rtmpaw7hG6/b1.Rout  2020-02-23 16:54:36</code></pre>
 </div>
 <div id="forcing-the-build" class="section level2">
 <h2>Forcing the Build</h2>
 <p>If you set the force option, you can force the target and all its prerequisites down the build chain to be built:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>If you want to force the target itself, but not all its prerequisites, set <code>recursive = FALSE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>,
                                                 <span class="dt">recursive =</span> <span class="ot">FALSE</span>)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 </div>
-<div id="using-aliases" class="section level2">
+<div id="faking-the-build" class="section level2">
+<h2>Faking the Build</h2>
+<p>If you don<code>t actually want to run the recipes but would rather like to know what  would happen if you ran the build chain (this mocks GNU make</code>s -n option), you can set <code>dry_run = TRUE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.remove</span>(<span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">dry_run =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<p>Note that no files have been created:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)</code></pre></div>
+<pre><code>## character(0)</code></pre>
+<p>So we recreate them now:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot; &quot;b1.Rout&quot;</code></pre>
+</div>
+<div id="aliases" class="section level2">
 <h2>Using Aliases</h2>
-<p>If you find a target rule’s <em>target</em> too hard to type, you can use an alias:</p>
+<p>If you find a target rule`s <em>target</em> too hard to type, you can use an alias:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;all.Rout&quot;</span>)
 ml[[i]][<span class="st">&quot;alias&quot;</span>] &lt;-<span class="st"> &quot;all&quot;</span>
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
-<pre><code>## Current target is: all.Rout.</code></pre>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
-<pre><code>## Current target is: a2.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
-<p>This is pointless here, but <em>target</em>s might be files down a directory tree like ‘log/roxygen.Rout’ when building <strong>R</strong> packages.</p>
+<p>This is pointless here, but <em>target</em>s might be files down a directory tree like <code>log/roxygen2.Rout</code> when building <strong>R</strong> packages: you might want to alias that target to <code>roxygen</code></p>
 </div>
-<div id="diverting-output-programmatically-creating-a-target-rules-target" class="section level2">
-<h2>Diverting Output / Programmatically Creating a Target Rule’s Target</h2>
+<div id="diverting" class="section level2">
+<h2>Diverting Output / Programmatically Creating a Target Rule`s Target</h2>
 <p>Target rule b1 dumps its output to b1.Rout:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;b1&quot;</code></pre>
@@ -248,14 +240,12 @@ ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span
                       <span class="st">&quot;print(</span><span class="ch">\&quot;</span><span class="st">foobar</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,
                       <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
-<pre><code>## Current target is: b1.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
 <pre><code>## hello, wo[1] &quot;foobar&quot;</code></pre>
 <p>You end up with a broken target file, <strong>so you need to add a <em>sink</em></strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;sink&quot;</span>] &lt;-<span class="st"> &quot;b1.txt&quot;</span>
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
-<pre><code>## Current target is: b1.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot;</code></pre>
 <p>Now you get what you wanted:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
@@ -263,6 +253,7 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.txt&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;b1&quot;
 ## [1] &quot;foobar&quot;</code></pre>
+<p>We need sinks when the target<code>s code creates the target, for example when it  builds a package</code>s tarball: we would want to get the output of building the tarball to be written to a file the path of which we specify via the target`s sink.</p>
 </div>
 <div id="no-code-targets" class="section level2">
 <h2>No Code Targets</h2>
@@ -277,20 +268,16 @@ ml[[i]][<span class="st">&quot;code&quot;</span>]</code></pre></div>
 <p>If we remove that code and its output file and rerun</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">NULL</span>
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
 <pre><code>## [1] &quot;b1.Rout&quot; &quot;a1.Rout&quot;</code></pre>
 <p>the file is still created (note that target rule b1 down the make chain is run since we did not set <code>recursive = FALSE</code> ) but empty:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.size</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
-<div id="phony-targets" class="section level2">
+<div id="phony" class="section level2">
 <h2>Phony Targets</h2>
 <p>As you have seen, you can temporarily force a build. You may set a target to be .PHONY which forces it (but not its prerequisites) to be built:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;.PHONY&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">TRUE</span>
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## Current target is: a1.Rout.</code></pre>
-<pre><code>## Current target is: b1.Rout.</code></pre>
 <pre><code>## [1] &quot;a1.Rout&quot;</code></pre>
 </div>
 </div>
@@ -309,6 +296,9 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 </ol>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

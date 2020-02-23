@@ -17,7 +17,7 @@ corresponding targets, but this makes them harder to read.}
 The \code{makelist}.
 }
 \description{
-Read a \command{Makefile} Into a \code{Makelist}
+This is experimental! See \bold{Note}.
 }
 \note{
 This function will not read arbitrary \command{Makefiles}, just those
@@ -30,3 +30,4 @@ make_file <- file.path(tempdir(), "Makefile")
 write_makefile(provide_make_list(), path = make_file)
 str(make_list <- read_makefile(path = make_file))
 }
+\keyword{internal}

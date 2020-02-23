@@ -39,3 +39,4 @@ devtools::build(pkg = package_path, path = package_path)
 print(check_archive(tarball))
 }
 }
+\keyword{internal}

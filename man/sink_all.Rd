@@ -28,3 +28,4 @@ sink_all(sink_path, {
 })
 cat(readLines(sink_path), sep = "\n")
 }
+\keyword{internal}

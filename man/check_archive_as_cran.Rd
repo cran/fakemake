@@ -12,3 +12,4 @@ check_archive_as_cran(path)
 \description{
 A Convenience Wrapper to \code{\link{check_archive}}
 }
+\keyword{internal}
