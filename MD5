@@ -1,7 +1,7 @@
-b4d9905c9d0045105d9e5c57e543f725 *DESCRIPTION
+3bfe965c7e350a5b0a2aeac26d00f488 *DESCRIPTION
 2e562f598285368f0874203edd598c65 *LICENSE
 111989277c8ae80b97bd936c860138de *NAMESPACE
-68c5140660904106040ccb64f4b5e025 *NEWS.md
+64fd11bd81dea7a5326c3d91517c5dc5 *NEWS.md
 079b0cd5a2f095ac48112ac47f0b0fdf *R/fakemake-package.R
 d599dd94034cd1d2e0a0cd07444b5bd3 *R/internals.R
 c40cbc28dc6c5177db3341742395cbe8 *R/main.R
@@ -15,10 +15,10 @@ d75ffa3ff5589c7c1088e413a87fc911 *README.md
 4a286981099e175694356f2c79cb2020 *build/vignette.rds
 6ef5e1dac6abe0d62de83ac265e45429 *inst/doc/An_Introduction_to_fakemake.R
 c621db1b2b7c5b4c75843f5050df24f6 *inst/doc/An_Introduction_to_fakemake.Rmd
-b3496610057af5141ca697a9a3133652 *inst/doc/An_Introduction_to_fakemake.html
+4ccbc4fca1fae4850f32d77c0067b749 *inst/doc/An_Introduction_to_fakemake.html
 1946dbb783030b919319cd02730a461b *inst/doc/Building_Packages.R
 1e0e4e3e77a05b09d1cef4df6d3a408c *inst/doc/Building_Packages.Rmd
-042a3f13cf8dfe576fa688b9542db8e2 *inst/doc/Building_Packages.html
+fc2705fb5da1fe689bd9caa597a8fe7c *inst/doc/Building_Packages.html
 8f01fa979d779f78d32015320abf3516 *inst/runit_tests/runit-check_makelist.R
 699448cd5cb0f1e9bedeb5953a2ed6a5 *inst/runit_tests/runit-makefile.R
 dcfd55f7d14b9a32b4cfb41affda49e5 *inst/runit_tests/runit-makelist2igraph.R
@@ -45,7 +45,7 @@ a988321405a436619beac4ea0d761f3f *man/read_makefile.Rd
 f2306f46f68ae21a886cb0eb2cc16792 *man/touch.Rd
 79ea77d84ec8126f322d399cf922842d *man/visualize.Rd
 3be8b10160d7dd3f118edc14204895e8 *man/write_makefile.Rd
-634a7ecde39e8792ee985994a3851b20 *tests/runit.R
+c689c4af6c28f751c025edb0a973f980 *tests/runit.R
 fb2fcc888db7625832ed94a64733a8b9 *tests/testthat.R
 afc87be4567f11360ba86706eb4e0c83 *tests/testthat/notest-source_files.R
 b038a15a2066f5df5e39a96197c5188d *tests/testthat/test-throw.R

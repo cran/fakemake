@@ -1,3 +1,8 @@
+# fakemake 1.7.1
+
+* Skipping RUnit testing on non-Windows and non-Linux platforms.
+  CRAN reported errors in testing on MacOS X only.
+
 # fakemake 1.7.0
 
 * Functions `check_archive`, `check_archive_as_cran` and `get_pkg_archive_path`

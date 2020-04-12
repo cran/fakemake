@@ -1,4 +1,9 @@
 #!/usr/bin/Rscript --vanilla
+if(identical(.Platform[["OS.type"]], "unix") && 
+   !(identical(Sys.info()[["sysname"]], "Linux"))) {
+    message("Skipping test. Target is MacOS X, but I'm not sure how to test for that.")
+} else {
+
 is_failure <- function(result) {
     res <- RUnit::getErrors(result)
     names(res) <- tolower(names(res)) # soothe lintr
@@ -34,4 +39,5 @@ RUnit::printTextProtocol(test_result, showDetails = TRUE, fileName = "")
 if (is_failure(test_result)) {
     RUnit::printTextProtocol(test_result, showDetails = TRUE)
     stop("RUnit failed.")
+}
 }
