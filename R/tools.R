@@ -59,7 +59,7 @@ get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
 #' Check a Package Archive
 #'
 #' This is a wrapper to
-#' \code{\link[callr:rcmd_safe]{callr::rcmd_safe}("check")},
+#' \code{\link[callr:rcmd]{callr::rcmd_safe}("check")},
 #' similar to, but leaner than
 #' \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck}}. While
 #' the latter parses the output of \code{rcmd_safe} and uses

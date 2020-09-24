@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Andreas Dominik Cullmann" />
 
@@ -20,41 +19,67 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -81,7 +106,187 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -102,7 +307,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="why-mock-the-unix-make-utility" class="section level1">
 <h1>Why Mock the Unix Make Utility?</h1>
 <p>There are <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software">many</a> <a href="https://en.wikipedia.org/wiki/Build_automation">build systems</a>, and even more uses for build systems <span class="citation">(see Powers et al. 2002, sec. 11.10 and 11.11)</span>.</p>
-<p>I have been using the <a href="https://en.wikipedia.org/wiki/Make_(software)">unix make utility</a> when developing R packages since 2012. But sometimes I get caught on a machine where <em>make</em> is not available and where I am not entitled to install it<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>I have been using the <a href="https://en.wikipedia.org/wiki/Make_(software)">unix make utility</a> when developing R packages since 2012. But sometimes I get caught on a machine where <em>make</em> is not available and where I am not entitled to install it<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p>This is why I wrote <em>fakemake</em>: to build an R package conditionally on the modification times of (file) dependencies without having to rely on external software. <strong>If you have any proper build system at hand: stick to it, do not use <em>fakemake</em>.</strong></p>
 </div>
 <div id="withr-and-knitr" class="section level1">
@@ -113,7 +318,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="makelists" class="section level1">
 <h1>Makelists</h1>
 <p>A makelist is <em>fakemake</em><code>s representation of a Makefile. It</code>s just a list of lists. Look at the minimal makelist provided by <em>fakemake</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">str</span>(fakemake<span class="op">::</span><span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## List of 4
 ##  $ :List of 3
 ##   ..$ target       : chr &quot;all.Rout&quot;
@@ -140,117 +345,117 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="a-minimal-example" class="section level1">
 <h1>A Minimal Example</h1>
 <p>Suppose we would have a minimal makelist:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml &lt;-<span class="st"> </span>fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ml &lt;-<span class="st"> </span>fakemake<span class="op">::</span><span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>We can visualize the makelist (giving the <code>root</code> is optional, in this case it just makes a neater plot):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">visualize</span>(ml, <span class="dt">root =</span> <span class="st">&quot;all.Rout&quot;</span>)</code></pre></div>
-<p><img src="data:image/png;base64,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TlpaVVDQ3uee+2enrQUFdT3ddvz4aUSx8yMWTRn3uqfbn957aUbZXvnTUyg+Pl7aYcWKU8eOlYiiaDCI0dHHly9PkJbb71avN3R8iN4fDiwfjmDdWLXql35+rg895Llt2+x//rO4qUnbxxtK71XZ+doBD7eGugbnqUHX5TJD4e2773QWBP1nn+VERfkSkUxGq1eH7duX09am7/hyxd7PUcHqILButL9CNzLSWxSpoUHoff92CxcuJKJytRj7u2+ULk2v71kYF2/rGzRj8uTJRFRV1aTTGaTTQiIKClLq9WJNTfe/EoChAYH1RqvVe3k5eXk59XH/mTNnEtGzH3qs/6Jpst+hq+Ve8dnLv/76a2mrt7ezQmGTlVUjfSkIemdnO2/vuy8IFkWRiPT6zlflRVynt2a4itiNtra7vx0+eLDwgw9mtJ/C6XQGIjIY7vmJ37z54vDh9qtXhxGR9Au01NT0K1cuqtVqZaLTt9/Kbt4k6V2XtrbylStDd+/OevxxP5mMTp68uXZtuHROOGKE4/HjN3x9XffvzyOiysrG4GAlEXl5ORUV1bu62vv44IX5VskmJibG3GOwLDIZHTp0NSOjOi2taswY10WL7v7B0OvX7+zceeXMmVsymWz0aBdPz7uHtY8+SrtzR5g/f3xOTu2WLZcKCuoEwWbu3KnPPDNj3rwHjxwp/vzzvIkTRwQGuhPR7Nlj0tNVR49eKynRaDRt69Y90h7Yhg0p8fHFS5f+IjW1XKl0iIgYZWsrLy9vjItLCwhwCwkZaa4JgcHAhz8AMMJzMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYITAABghMABGCAyAEQIDYPR/By4OOUvlnrMAAAAASUVORK5CYII=" /><!-- --></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">fakemake<span class="op">::</span><span class="kw">visualize</span>(ml, <span class="dt">root =</span> <span class="st">&quot;all.Rout&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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hgd9fL4+HJKQ4L9s2Rzh8tatkd7e0zZvjsjLU3h64gPRNgmBGeHk5EBEjo4Or7326LVr7SUl6nvcsLOzk4j2HEv84e7NET/f9toRRc6L+4Nk127fvk1ESqWmvLxl/frvCStv2RJRVtasVGp47gRYBQQ2nrlzPYlIpeq+x/V9fX2J6PnVpz98IeO/n/zsVpebg4P+auPXn3S+caODiGQyV2FlPz8PIqqt7eQYOVgJBDaewUEdEbm5Od7j+snJyUTU1k1E9Ozj54Okt3709hq/B+LDw8PpjoOTwle+4s3A9g2H6ccjPLwEB0vucf24uDii2h25089UkpebfkCbr+n8z/9a/gPh2nnzPImoqaknKMiTiBoauolIuOzgINLr8RXLdgiPYOPZt++LpUsDQkPH+0zXihU5S5ceHb3krbfeevalo3E//L+jx99bvnzOm29e0mj6iCgy0ueRR2RZWZeF1Q4cqIiJkUVG+hCRXO5WVNQwODjc369rbe0b2ZWLi6Na3WP6OwbmIt6+fbulx2Bdurq0f/2r6sMPr+ze/XdXV8eMjOXCeztOnryZnv7l8eO1KlV3Y2O3Utm6cKFcLBYJwaSkhJWUNL/+enFNTXtbm276dP/nnvuBr69vVNSstDTl6dP1Hh5TH3poRmJiwMGDlzIzq7KzqwcHhw8dekLYuZ+fe3r6xb17L1RU3NLp9MXFaonEOTpaOjSk37WrtKCgNjx8hq8vvhjY9uDkDwCM8BQRgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAYITAARggMgBECA2CEwAAY/T9kD7yzcNgHbgAAAABJRU5ErkJggg==" /><!-- --></p>
 <div id="building-and-rebuilding" class="section level2">
 <h2>Building and Rebuilding</h2>
 <p>Now build the “all.Rout” <em>target</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>We can see the files created:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">show_file_mtime &lt;-<span class="st"> </span>function(<span class="dt">files =</span> <span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>,
-                                               <span class="dt">pattern =</span> <span class="st">&quot;^.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)) {
-    <span class="kw">return</span>(<span class="kw">file.info</span>(files)[<span class="st">&quot;mtime&quot;</span>])
-}
-<span class="kw">show_file_mtime</span>()</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">show_file_mtime &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">files =</span> <span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb7-2" title="2">                                               <span class="dt">pattern =</span> <span class="st">&quot;^.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)) {</a>
+<a class="sourceLine" id="cb7-3" title="3">    <span class="kw">return</span>(<span class="kw">file.info</span>(files)[<span class="st">&quot;mtime&quot;</span>])</a>
+<a class="sourceLine" id="cb7-4" title="4">}</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw">show_file_mtime</span>()</a></code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpLYHpPG/a1.Rout  2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/a2.Rout  2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/all.Rout 2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/b1.Rout  2020-04-12 11:12:16</code></pre>
+## /tmp/RtmpW7hEdb/a1.Rout  2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/a2.Rout  2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/all.Rout 2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/b1.Rout  2020-09-24 10:19:13</code></pre>
 <p>If we wait for a second and rerun the build process, we get:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
-<span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># ensure the modification time would change if the files were recreated</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">Sys.sleep</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</a></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">show_file_mtime</span>()</a></code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpLYHpPG/a1.Rout  2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/a2.Rout  2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/all.Rout 2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/b1.Rout  2020-04-12 11:12:16</code></pre>
+## /tmp/RtmpW7hEdb/a1.Rout  2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/a2.Rout  2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/all.Rout 2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/b1.Rout  2020-09-24 10:19:13</code></pre>
 <p>Nothing changed. Good. Now, we change one file down the build chain:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">fakemake<span class="op">::</span><span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))</a>
+<a class="sourceLine" id="cb13-2" title="2">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</a></code></pre></div>
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">show_file_mtime</span>()</a></code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpLYHpPG/a1.Rout  2020-04-12 11:12:18
-## /tmp/RtmpLYHpPG/a2.Rout  2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/all.Rout 2020-04-12 11:12:18
-## /tmp/RtmpLYHpPG/b1.Rout  2020-04-12 11:12:18</code></pre>
+## /tmp/RtmpW7hEdb/a1.Rout  2020-09-24 10:19:14
+## /tmp/RtmpW7hEdb/a2.Rout  2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/all.Rout 2020-09-24 10:19:14
+## /tmp/RtmpW7hEdb/b1.Rout  2020-09-24 10:19:14</code></pre>
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets get rebuilt while a2.Rout stays untouched.</p>
 <p>Had we touched a1.Rout, b1.Rout would not have been rebuilt:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">fakemake<span class="op">::</span><span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</a>
+<a class="sourceLine" id="cb17-2" title="2">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</a></code></pre></div>
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">show_file_mtime</span>()</a></code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpLYHpPG/a1.Rout  2020-04-12 11:12:19
-## /tmp/RtmpLYHpPG/a2.Rout  2020-04-12 11:12:16
-## /tmp/RtmpLYHpPG/all.Rout 2020-04-12 11:12:19
-## /tmp/RtmpLYHpPG/b1.Rout  2020-04-12 11:12:18</code></pre>
+## /tmp/RtmpW7hEdb/a1.Rout  2020-09-24 10:19:15
+## /tmp/RtmpW7hEdb/a2.Rout  2020-09-24 10:19:13
+## /tmp/RtmpW7hEdb/all.Rout 2020-09-24 10:19:15
+## /tmp/RtmpW7hEdb/b1.Rout  2020-09-24 10:19:14</code></pre>
 </div>
 <div id="forcing-the-build" class="section level2">
 <h2>Forcing the Build</h2>
 <p>If you set the force option, you can force the target and all its prerequisites down the build chain to be built:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>If you want to force the target itself, but not all its prerequisites, set <code>recursive = FALSE</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>,
-                                                <span class="dt">recursive =</span> <span class="ot">FALSE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb23-2" title="2">                                                <span class="dt">recursive =</span> <span class="ot">FALSE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 </div>
 <div id="faking-the-build" class="section level2">
 <h2>Faking the Build</h2>
 <p>If you don<code>t actually want to run the recipes but would rather like to know what  would happen if you ran the build chain (this mocks GNU make</code>s -n option), you can set <code>dry_run = TRUE</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.remove</span>(<span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">file.remove</span>(<span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">dry_run =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">dry_run =</span> <span class="ot">TRUE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>Note that no files have been created:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)</a></code></pre></div>
 <pre><code>## character(0)</code></pre>
 <p>So we recreate them now:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">dir</span>(<span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">&quot;.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot; &quot;b1.Rout&quot;</code></pre>
 </div>
 <div id="aliases" class="section level2">
 <h2>Using Aliases</h2>
 <p>If you find a target rule`s <em>target</em> too hard to type, you can use an alias:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;all.Rout&quot;</span>)
-ml[[i]][<span class="st">&quot;alias&quot;</span>] &lt;-<span class="st"> &quot;all&quot;</span>
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) <span class="op">==</span><span class="st"> &quot;all.Rout&quot;</span>)</a>
+<a class="sourceLine" id="cb35-2" title="2">ml[[i]][<span class="st">&quot;alias&quot;</span>] &lt;-<span class="st"> &quot;all&quot;</span></a>
+<a class="sourceLine" id="cb35-3" title="3">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;all&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>This is pointless here, but <em>target</em>s might be files down a directory tree like <code>log/roxygen2.Rout</code> when building <strong>R</strong> packages: you might want to alias that target to <code>roxygen</code></p>
 </div>
 <div id="diverting" class="section level2">
 <h2>Diverting Output / Programmatically Creating a Target Rule`s Target</h2>
 <p>Target rule b1 dumps its output to b1.Rout:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;b1&quot;</code></pre>
 <p>Suppose it would programmatically create the target:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;b1.Rout&quot;</span>)
-ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="kw">paste</span>(ml[[i]][<span class="st">&quot;code&quot;</span>],
-                      <span class="st">&quot;cat('hello, world</span><span class="ch">\n</span><span class="st">', file = </span><span class="ch">\&quot;</span><span class="st">b1.Rout</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,
-                      <span class="st">&quot;print(</span><span class="ch">\&quot;</span><span class="st">foobar</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,
-                      <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) <span class="op">==</span><span class="st"> &quot;b1.Rout&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" title="2">ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="kw">paste</span>(ml[[i]][<span class="st">&quot;code&quot;</span>],</a>
+<a class="sourceLine" id="cb39-3" title="3">                      <span class="st">&quot;cat('hello, world</span><span class="ch">\n</span><span class="st">', file = </span><span class="ch">\&quot;</span><span class="st">b1.Rout</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,</a>
+<a class="sourceLine" id="cb39-4" title="4">                      <span class="st">&quot;print(</span><span class="ch">\&quot;</span><span class="st">foobar</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,</a>
+<a class="sourceLine" id="cb39-5" title="5">                      <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb39-6" title="6">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## hello, wo[1] &quot;foobar&quot;</code></pre>
 <p>You end up with a broken target file, <strong>so you need to add a <em>sink</em></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;sink&quot;</span>] &lt;-<span class="st"> &quot;b1.txt&quot;</span>
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">ml[[i]][<span class="st">&quot;sink&quot;</span>] &lt;-<span class="st"> &quot;b1.txt&quot;</span></a>
+<a class="sourceLine" id="cb43-2" title="2">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;</code></pre>
 <p>Now you get what you wanted:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## hello, world</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.txt&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.txt&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;b1&quot;
 ## [1] &quot;foobar&quot;</code></pre>
 <p>We need sinks when the target<code>s code creates the target, for example when it  builds a package</code>s tarball: we would want to get the output of building the tarball to be written to a file the path of which we specify via the target`s sink.</p>
@@ -258,26 +463,26 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <div id="no-code-targets" class="section level2">
 <h2>No Code Targets</h2>
 <p>Rule a1 has <em>code</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;a1.Rout&quot;</span>)
-ml[[i]][<span class="st">&quot;code&quot;</span>]</code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) <span class="op">==</span><span class="st"> &quot;a1.Rout&quot;</span>)</a>
+<a class="sourceLine" id="cb49-2" title="2">ml[[i]][<span class="st">&quot;code&quot;</span>]</a></code></pre></div>
 <pre><code>## $code
 ## [1] &quot;print(\&quot;a1\&quot;)&quot;</code></pre>
 <p>that prints “a1” into “a1.Rout”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">cat</span>(<span class="kw">readLines</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>)), <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;a1&quot;</code></pre>
 <p>If we remove that code and its output file and rerun</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">NULL</span>
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb53-2" title="2">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot; &quot;a1.Rout&quot;</code></pre>
 <p>the file is still created (note that target rule b1 down the make chain is run since we did not set <code>recursive = FALSE</code> ) but empty:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.size</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">file.size</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
 <div id="phony" class="section level2">
 <h2>Phony Targets</h2>
 <p>As you have seen, you can temporarily force a build. You may set a target to be .PHONY which forces it (but not its prerequisites) to be built:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;.PHONY&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">TRUE</span>
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml)))</code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">ml[[i]][<span class="st">&quot;.PHONY&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb57-2" title="2">withr<span class="op">::</span><span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake<span class="op">::</span><span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml)))</a></code></pre></div>
 <pre><code>## [1] &quot;a1.Rout&quot;</code></pre>
 </div>
 </div>
@@ -292,7 +497,7 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>This is a nice example of what restrictive software policies are good for: you end up with a buggy imitation like <em>fakemake</em> instead of the well established original. You should not regulate software installations for programmers, unless you take away their interpreters/compilers.<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>This is a nice example of what restrictive software policies are good for: you end up with a buggy imitation like <em>fakemake</em> instead of the well established original. You should not regulate software installations for programmers, unless you take away their interpreters/compilers.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

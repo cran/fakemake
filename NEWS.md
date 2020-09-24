@@ -1,3 +1,8 @@
+# fakemake 1.7.2
+
+* Fix help links to package `callr` following request
+  Deepayan Sarkar (see https://deepayan.github.io/tmp/topichelp/funs.html).
+
 # fakemake 1.7.1
 
 * Skipping RUnit testing on non-Windows and non-Linux platforms.
