@@ -1,7 +1,7 @@
 ---
 title: "Building **R**  Packages Using *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2020-02-23, 16:23:49
+date: 2020-09-28, 11:29:24
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Building Packages}
@@ -55,10 +55,10 @@ It is just there to exemplify the usage of *fakemake*.
 
 
 ## Setting Up the Makelist
-Then we get a package makelist from *fakemake*:
+Then we get a package makelist:
 
 ``` {r}
-ml <- fakemake::provide_make_list("vignette")
+ml <-  fakemake::provide_make_list("vignette")
 ```
 
 This list is a bit more complex than the minimal example above, so we visualize

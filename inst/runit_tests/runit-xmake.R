@@ -1,4 +1,4 @@
-if (interactive()) devtools::load_all()
+if (interactive()) pkgload::load_all()
 
 test_make_full_tree <- function() {
     old <- setwd(tempdir())
@@ -97,11 +97,10 @@ test_make_prerequisite <- function() {
 }
 
 test_make_source_files <- function() {
-    old <- setwd(tempdir())
-    on.exit(setwd(old))
     warning("FIXME: The remaining code is in dontshow() in the examples ",
             "section of make()! ",
-            "I haven't understood yet why is does not work in formal testing.")
+            "I haven't understood yet why is does not work in ", 
+            "formal testing.")
 }
 
 test_make_sink <- function() {

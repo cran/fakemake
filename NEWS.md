@@ -1,3 +1,9 @@
+# fakemake 1.8.0
+
+* Removed deprecated functions `get_pkg_archive_path`,
+    `check_archive` and `check_archive_as_cran` that are now in packager. 
+* Fixed testing via gitlab-ci.
+
 # fakemake 1.7.2
 
 * Fix help links to package `callr` following request

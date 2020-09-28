@@ -5,7 +5,7 @@
 \title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
 provide_make_list(
-  type = c("minimal", "cran", "vignette", "standard", "package"),
+  type = c("minimal", "vignette"),
   prune = TRUE,
   clean_sink = FALSE
 )

@@ -8,7 +8,7 @@ file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 
 ## -----------------------------------------------------------------------------
-ml <- fakemake::provide_make_list("vignette")
+ml <-  fakemake::provide_make_list("vignette")
 
 ## ----fig.width = 6.8, fig.height = 6.8----------------------------------------
 withr::with_dir(pkg_path, fakemake::visualize(ml))

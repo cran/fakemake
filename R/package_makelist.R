@@ -1,4 +1,7 @@
 package_makelist <- function() {
+    # ALERT: we need  _this_ version for the vignette Building_Packages.Rmd, which
+    # mentions packager::An_Introduction_to_packager.html
+    # Do not remove this file unless we remove vignette Building_Packages.Rmd.
     .Deprecated("packager::get_package_makelist")
     roxygen_code  <- "print(roxygen2::roxygenize(\".\"))"
     cleanr_code <- paste("print(tryCatch(cleanr::check_directory(\"R\",",
@@ -59,7 +62,7 @@ package_makelist <- function() {
                                       "file.path(\"log\", \"covr.Rout\")",
                                       "file.path(\"log\", \"roxygen2.Rout\")")),
                list(alias = "check", target = "log/check.Rout",
-                    code = "check_archive_as_cran(get_pkg_archive_path())",
+                    code = "packager::check_archive_as_cran(packager::get_pkg_archive_path())",
                     prerequisites = "get_pkg_archive_path(absolute = FALSE)"))
     return(pl)
 }

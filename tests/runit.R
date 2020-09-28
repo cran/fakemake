@@ -9,6 +9,7 @@ is_failure <- function(result) {
     names(res) <- tolower(names(res)) # soothe lintr
     sum_of_exceptions <- res[["nerr"]] + res[["nfail"]]
     fail <- as.logical(sum_of_exceptions)
+    print(res)
     return(fail)
 }
 
