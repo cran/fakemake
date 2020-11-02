@@ -1,3 +1,7 @@
+# fakemake 1.8.1
+
+* Removed `callr` and `withr` from the Depends-Field in file DESCRIPTION.
+
 # fakemake 1.8.0
 
 * Removed deprecated functions `get_pkg_archive_path`,

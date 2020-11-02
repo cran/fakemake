@@ -16,6 +16,7 @@ test_package_path <- function() {
     }
 }
 
+if (Sys.info()["nodename"] == "h6") {
 test_check_archive <- function() {
     old <- setwd(tempdir())
     on.exit(setwd(old))
@@ -30,6 +31,7 @@ test_check_archive <- function() {
     RUnit::checkTrue(result[["status"]] == 0)
     result <- packager::check_archive_as_cran(tarball)
     RUnit::checkTrue(result[["status"]] == 0)
+}
 }
 
 test_touch <- function() {
