@@ -1,0 +1,242 @@
+= An Introduction to _fakemake_
+:Author: "Andreas Dominik Cullmann"
+:Date: 2020-12-01, 14:18:19
+:toc2:
+
+////
+    %\VignetteIndexEntry{An Introduction to fakemake}
+    %\VignetteEngine{rasciidoc::rasciidoc}
+    %\VignetteEncoding{UTF-8}
+////
+
+== Why Mock the Unix Make Utility?
+There are
+https://en.wikipedia.org/wiki/List_of_build_automation_software[many]
+https://en.wikipedia.org/wiki/Build_automation[build systems],
+and even more uses for build systems (see <<Powers>>, sections 11.10 and 11.11).
+
+I have been using the
+https://en.wikipedia.org/wiki/Make_(software)[unix make utility] when
+developing R packages since 2012. But sometimes I get caught on a machine where
+_make_ is not available and where I am not entitled to install it 
+footnote:[This is a nice example of what restrictive software policies are good for:
+you end up with a buggy imitation like _fakemake_ instead of the 
+well established original. 
+You should not regulate software installations for programmers, unless you take 
+away their interpreters/compilers.]
+
+This is why I wrote _fakemake_: to build an R package conditionally on the
+modification times of (file) dependencies without having to rely on external
+software.
+**If you have any proper build system at hand: stick to it, do not use 
+_fakemake_.**
+
+== _withr_ and _knitr_
+Throughout this vignette I use  **R**'s temporary directory, often by using 
++withr::with_dir(tempdir(), ...)+. Because this is a vignette and the codes are
+examples. In real life, we would skip the temporary directory stuff.
+
+This vignette is built using _knitr_, which itself uses +sink()+. As +sink()+ is 
+central to _fakemake_ for redirecting output to files in the make chain,
+I have to disable some of _knitr_'s output here and there. 
+Don't worry, it's just because _knitr_ and _fakemake_ both want to use +sink()+ 
+exclusively and it only affects vignettes built with _knitr_.
+
+== Makelists
+A makelist is _fakemake_'s representation of a Makefile.
+It's just a list of lists.
+Look at the minimal makelist provided by _fakemake_:
+//begin.rcode
+str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
+//end.rcode
+Each sublist represents a Makefile's target rule and has several items:
+at least a _target_ and either _code_ or _prerequisites_, possibly both.
+This makelist would still be a Makefile's valid representation if target rule #3
+with target "a1.Rout" had no (or an empty) _code_ item.
+
+Other possible target rule entries are:
+
+- _alias_: An alias to target that would be easier to remember and/or type
+      (we will come back to his <<aliases, later>>).
+- _sink_: By default, all output of the _code_ item is dumped 
+  (well, with **R**'s `sink` function)
+  into a file with the name given by _target_. If _target_ should be created by
+  the _code_ you will want to redirect the output into _sink_ 
+      (we will come back to his <<diverting, later>>).
+- _.PHONY_: If set to TRUE, the target is rebuilt unconditionally every time the
+  target is hit (trying to mock GNU make's .PHONY-extension)
+      (we will come back to his <<phony, later>>).
+
+
+== Using _fakemake_
+Suppose we would have a minimal makelist:
+//begin.rcode
+ml <- fakemake::provide_make_list("minimal", clean_sink = TRUE)
+//end.rcode
+We can visualize the makelist 
+(giving the +root+ is optional, in this case it just makes a neater plot):
+
+//begin.rcode makelist-plot, dev = "png", fig.cap = "A Makelist"
+fakemake::visualize(ml, root = "all.Rout")
+//end.rcode
+
+=== Building and Rebuilding
+Now build the "all.Rout" _target_:
+
+//begin.rcode
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+//end.rcode
+We can see the files created:
+//begin.rcode
+show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE,
+                                               pattern = "^.*\\.Rout")) {
+    return(file.info(files)["mtime"])
+}
+show_file_mtime()
+//end.rcode
+If we wait for a second and rerun the build process, we get:
+
+//begin.rcode
+# ensure the modification time would change if the files were recreated
+Sys.sleep(1)
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+show_file_mtime()
+//end.rcode
+Nothing changed. Good.
+Now, we change one file down the build chain:
+
+//begin.rcode
+fakemake::touch(file.path(tempdir(), "b1.Rout"))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+show_file_mtime()
+//end.rcode
+
+Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets
+get rebuilt while a2.Rout stays untouched.
+
+Had we touched a1.Rout, b1.Rout would not have been rebuilt:
+//begin.rcode, echo = FALSE
+# touch should do the job...
+Sys.sleep(1)
+//end.rcode
+
+//begin.rcode
+fakemake::touch(file.path(tempdir(), "a1.Rout"))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+show_file_mtime()
+//end.rcode
+
+=== Forcing the Build
+If you set the force option, you can force the target and all its prerequisites
+down the build chain to be built:
+//begin.rcode
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE)))
+//end.rcode
+
+If you want to force the target itself, but not all its prerequisites, set 
++recursive = FALSE+:
+//begin.rcode
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE,
+                                                recursive = FALSE)))
+//end.rcode
+
+=== Faking the Build
+If you don't actually want to run the recipes but would rather like to know what 
+would happen if you ran the build chain (this mocks GNU make's -n option), 
+you can set +dry_run = TRUE+:
+//begin.rcode
+file.remove(dir(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, dry_run = TRUE)))
+//end.rcode
+
+Note that no files have been created:
+//begin.rcode
+dir(tempdir(), pattern = ".*\\.Rout")
+//end.rcode
+
+So we recreate them now:
+//begin.rcode
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+dir(tempdir(), pattern = ".*\\.Rout")
+//end.rcode
+
+=== Using Aliases [[aliases]]
+If you find a target rule's _target_ too hard to type, you can use an alias:
+
+//begin.rcode
+i <- which(sapply(ml, "[[", "target") == "all.Rout")
+ml[[i]]["alias"] <- "all"
+withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))
+//end.rcode
+This is pointless here, but _target_s might be files down a
+directory tree like +log/roxygen2.Rout+ when building **R** packages: 
+you might want to alias that target to +roxygen+
+
+=== Diverting  [[diverting]] Output / Programmatically Creating a Target Rule's Target
+Target rule b1 dumps its output to b1.Rout:
+//begin.rcode
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
+//end.rcode
+Suppose it would programmatically create the target:
+//begin.rcode
+i <- which(sapply(ml, "[[", "target") == "b1.Rout")
+ml[[i]]["code"]  <- paste(ml[[i]]["code"],
+                      "cat('hello, world\n', file = \"b1.Rout\")",
+                      "print(\"foobar\")",
+                      sep = ";")
+withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
+//end.rcode
+You end up with a broken target file, __so you need to add a *sink*__:
+//begin.rcode
+ml[[i]]["sink"] <- "b1.txt"
+withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
+//end.rcode
+Now you get what you wanted:
+//begin.rcode
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
+cat(readLines(file.path(tempdir(), "b1.txt")), sep = "\n")
+//end.rcode
+We need sinks when the target's code creates the target, for example when it 
+builds a package's tarball: we would want to get the output of building the 
+tarball to be written to a file the path of which we specify via the target's 
+sink.
+
+=== No Code Targets
+Rule a1 has _code_
+//begin.rcode
+i <- which(sapply(ml, "[[", "target") == "a1.Rout")
+ml[[i]]["code"]
+//end.rcode
+that prints "a1" into "a1.Rout":
+//begin.rcode
+cat(readLines(file.path(tempdir(), "a1.Rout")), sep = "\n")
+//end.rcode
+
+If we remove that code and its output file and rerun
+//begin.rcode
+ml[[i]]["code"]  <- NULL
+withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml, force = TRUE)))
+//end.rcode
+the file is still created (note that target rule b1 down the make chain is run
+                           since we did not set +recursive = FALSE+ ) but empty:
+//begin.rcode
+file.size(file.path(tempdir(), "a1.Rout"))
+//end.rcode
+
+=== Phony [[phony]] Targets
+As you have seen, you can temporarily force a build.
+You may set a target to be .PHONY which forces it (but not its prerequisites) to
+be built:
+//begin.rcode
+ml[[i]][".PHONY"]  <- TRUE
+withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
+//end.rcode
+
+==  Building Packages
+See vignette https://cran.r-project.org/package=fakemake/vignettes/Building_Packages.html[Building *R* Packages Using _fakemake_].
+
+== References
+- [[[Powers]]]
+  Shelley Powers, Jerry Peek, Tim OReilly and Mike Loudikes. 
+  Unix Power Tools, O'Reilly & Associates, ISBN: 0-596-00330-7, 2002.

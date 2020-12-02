@@ -1,3 +1,7 @@
+# fakemake 1.9.0
+
+* Updated vignettes.
+
 # fakemake 1.8.1
 
 * Removed `callr` and `withr` from the Depends-Field in file DESCRIPTION.

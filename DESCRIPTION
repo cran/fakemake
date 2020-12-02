@@ -1,6 +1,6 @@
 Package: fakemake
 Title: Mock the Unix Make Utility
-Version: 1.8.1
+Version: 1.9.0
 Authors@R: 
     person(given = "Andreas Dominik",
            family = "Cullmann",
@@ -14,15 +14,15 @@ URL: https://gitlab.com/fvafrcu/fakemake
 Depends: R (>= 3.3.0)
 Imports: graphics, igraph, MakefileR, utils,
 Suggests: cleanr, covr, cyclocomp, devtools, hunspell, knitr, lintr,
-        packager (>= 1.5.0), pkgbuild, pkgload, rmarkdown, roxygen2,
-        rprojroot, RUnit, spelling, testthat, withr, usethis
-VignetteBuilder: knitr
+        packager (>= 1.5.0), pkgbuild, pkgload, rasciidoc, rmarkdown,
+        roxygen2, rprojroot, RUnit, spelling, testthat, withr, usethis
+VignetteBuilder: knitr, rasciidoc
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-11-02 19:59:03 UTC; qwer
+Packaged: 2020-12-02 12:30:33 UTC; qwer
 Author: Andreas Dominik Cullmann [aut, cre]
 Maintainer: Andreas Dominik Cullmann <fvafrcu@mailbox.org>
 Repository: CRAN
-Date/Publication: 2020-11-02 20:40:09 UTC
+Date/Publication: 2020-12-02 13:10:03 UTC

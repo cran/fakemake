@@ -1,7 +1,7 @@
 ---
 title: "Building **R**  Packages Using *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2020-09-28, 11:29:24
+date: 2020-12-02, 10:12:43
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Building Packages}
@@ -26,7 +26,6 @@ references:
     year: 2002
 ---
 
-We will now look at *fakemake*'s main purpose: building packages.
 
 __There's a more elaborated vignette coming with package `packager`. Please see 
 [packager's vignette](https://cran.r-project.org/package=packager/vignettes/An_Introduction_to_packager.html).__
@@ -61,8 +60,7 @@ Then we get a package makelist:
 ml <-  fakemake::provide_make_list("vignette")
 ```
 
-This list is a bit more complex than the minimal example above, so we visualize
-it:
+And we have a look at it:
 ``` {r,fig.width = 6.8, fig.height = 6.8}
 withr::with_dir(pkg_path, fakemake::visualize(ml))
 ```
