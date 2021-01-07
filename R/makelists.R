@@ -1,3 +1,34 @@
+#' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
+#'
+#' @inheritParams read_makefile
+#' @param type The type of \code{makelist}.
+#' package \code{makelist}.
+#' @param prune Prune the \code{makelist} of \code{NULL} items?
+#' @return A \code{makelist}.
+#' @export
+#' @examples
+#' str(provide_make_list("minimal"))
+#' visualize(provide_make_list("minimal"))
+provide_make_list <- function(type = c("minimal", "testing", "vignette"), prune = TRUE, 
+                              clean_sink = FALSE) {
+    type <- match.arg(type)
+    ml <- switch(type,
+                 testing = ,
+                 "minimal" =  {
+                     name <- "Makefile"
+                     if (! is.null(type)) name <- paste0(name, "_", type)
+                     read_makefile(system.file("templates", name,
+                                               package = "fakemake"),
+                                   clean_sink)
+                 },
+                 "vignette" = add_log(package_makelist()),
+                 throw(paste0("type ", type, " not known!"))
+                 )
+    if (isTRUE(prune)) ml <- prune_list(ml)
+    check_makelist(ml)
+    return(ml)
+}
+
 #' Get a Makelist's Target
 #' 
 #' Get a single target from a \code{makelist} by
@@ -111,4 +142,27 @@ add_target <- function(makelist, target, code, prerequisites = NULL,
     }
     return(c(ml, a))
 
+}
+
+#' Visualize a Makelist
+#' 
+#' Parse a \code{makelist}, convert it into an \code{igraph} and plot it.
+#'
+#' @param make_list The \code{makelist}.
+#' @param root The root of a tree.
+#' @return Invisibly an \pkg{igraph} representation of the \code{makelist}.
+#' @export
+#' @examples
+#' str(ml <- provide_make_list())
+#' visualize(ml)
+#' visualize(ml, root = "all.Rout")
+visualize <- function(make_list, root = NULL) {
+    g <- makelist2igraph(make_list, root = root)
+    if (! is.null(root)) {
+        graphics::plot(g,
+                       layout = igraph::layout.reingold.tilford(g, root = root))
+    } else {
+        graphics::plot(g)
+    }
+    return(invisible(g))
 }

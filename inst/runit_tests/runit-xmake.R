@@ -18,6 +18,7 @@ test_make_full_tree <- function() {
     result <- make("all.Rout", ml, force = TRUE)
     expectation <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
     RUnit::checkIdentical(result, expectation)
+    RUnit::checkIdentical(readLines("all.Rout"), "[1] \"all\"")
 }
 
 test_make_missing <- function() {
@@ -97,7 +98,7 @@ test_make_prerequisite <- function() {
 }
 
 test_make_source_files <- function() {
-    warning("FIXME: The remaining code is in dontshow() in the examples ",
+    message("FIXME: The remaining code is in dontshow() in the examples ",
             "section of make()! ",
             "I haven't understood yet why is does not work in ", 
             "formal testing.")
@@ -115,4 +116,15 @@ test_make_sink <- function() {
     expectation <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
     RUnit::checkIdentical(result, expectation)
     RUnit::checkTrue(file.exists(file.path(tempdir(), "all.txt")))
+}
+
+
+test_make_unconditionally <- function() {
+    old <- setwd(tempdir())
+    on.exit(setwd(old))
+    ml <- fakemake:::get_ml()
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+    result <- make("all.Rout", ml, unconditionally =  TRUE)
+    expectation <- c("all.Rout")
+    RUnit::checkIdentical(result, expectation)
 }

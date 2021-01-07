@@ -1,3 +1,14 @@
+# fakemake 1.10.0
+
+* Function `make()` now throws an error if a target's recipe fails.
+* Function `make()` now throws an error if a target's recipe throws a
+  `warning()` and the new argument `stop_on_warning` is set to `TRUE`.
+* Added argument `verbosity` to `make()` to set the level of verbosity triggered
+  my `verbose = TRUE`. 
+* Added argument `unconditionally` to `make()`, which allows you to run a
+  target's code unconditionally on the target's prerequisites, mocking GNU
+  make's option `--touch`. See `make` examples section.
+
 # fakemake 1.9.0
 
 * Updated vignettes.
