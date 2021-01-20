@@ -13,14 +13,6 @@ touch(path)
 The return value of \code{\link{file.copy}}.
 }
 \description{
-Creating a file or ensuring a file's modification time changes.
-}
-\examples{
-file <- tempfile()
-touch(file)
-t1 <- file.mtime(file)
-touch(file)
-t2 <- file.mtime(file)
-t1 < t2
+See \code{\link[fritools:touch]{fritools::touch}}.
 }
 \keyword{internal}

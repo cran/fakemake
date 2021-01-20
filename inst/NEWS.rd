@@ -1,13 +1,22 @@
 \name{NEWS}
 \title{NEWS}
 
+\section{Changes in version 1.10.0.9000}{
+\itemize{
+\item Bugfix on warnings and errors:
+These were overwriting the normal logging output, we now use
+\code{cat(..., append = TRUE)} instead of \code{writeLines()} to avoid doing so.
+\item Now importing package \code{fritools}.
+}
+}
+
 \section{Changes in version 1.10.0}{
 \itemize{
 \item Function \code{make()} now throws an error if a target's recipe fails.
 \item Function \code{make()} now throws an error if a target's recipe throws a
 \code{warning()} and the new argument \code{stop_on_warning} is set to \code{TRUE}.
 \item Added argument \code{verbosity} to \code{make()} to set the level of verbosity triggered
-my \code{verbose = TRUE}.
+by \code{verbose = TRUE}.
 \item Added argument \code{unconditionally} to \code{make()}, which allows you to run a
 target's code unconditionally on the target's prerequisites, mocking GNU
 make's option \code{--touch}. See \code{make} examples section.

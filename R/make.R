@@ -151,13 +151,15 @@ make <- function(name, make_list, force = FALSE, recursive = force,
                                  warning = identity,
                                  error = identity)
                 if (inherits(made, "warning")) {
-                    writeLines(made[["message"]],
-                               con = make_list[[index]][["sink"]])
+                    cat(made[["message"]],
+                               file = make_list[[index]][["sink"]],
+                               append = TRUE, sep = "\n")
                     if (isTRUE(stop_on_warning)) throw(made[["message"]])
                 }
                 if (inherits(made, "error")) {
-                    writeLines(as.character(made),
-                               con = make_list[[index]][["sink"]])
+                    cat(as.character(made),
+                               file = make_list[[index]][["sink"]],
+                               append = TRUE, sep = "\n")
                     throw(made[["message"]])
                 }
                 # If the code does not create the target, file modification

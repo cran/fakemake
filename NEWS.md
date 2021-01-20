@@ -1,10 +1,17 @@
+# fakemake 1.10.1
+
+* Bugfix on warnings and errors:
+  These were overwriting the normal logging output, we now use 
+  `cat(..., append = TRUE)` instead of `writeLines()` to avoid doing so.
+* Now importing package `fritools`.
+
 # fakemake 1.10.0
 
 * Function `make()` now throws an error if a target's recipe fails.
 * Function `make()` now throws an error if a target's recipe throws a
   `warning()` and the new argument `stop_on_warning` is set to `TRUE`.
 * Added argument `verbosity` to `make()` to set the level of verbosity triggered
-  my `verbose = TRUE`. 
+  by `verbose = TRUE`. 
 * Added argument `unconditionally` to `make()`, which allows you to run a
   target's code unconditionally on the target's prerequisites, mocking GNU
   make's option `--touch`. See `make` examples section.
