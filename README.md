@@ -1,5 +1,5 @@
-[![pipeline status](https://gitlab.com/fvafrCU/fakemake/badges/master/pipeline.svg)](https://gitlab.com/fvafrCU/fakemake/commits/master)    
-[![coverage report](https://gitlab.com/fvafrCU/fakemake/badges/master/coverage.svg)](https://gitlab.com/fvafrCU/fakemake/commits/master)
+[![pipeline status](https://gitlab.com/fvafrCU/fakemake/badges/master/pipeline.svg)](https://gitlab.com/fvafrCU/fakemake/-/commits/master)    
+[![coverage report](https://gitlab.com/fvafrCU/fakemake/badges/master/coverage.svg)](https://gitlab.com/fvafrCU/fakemake/-/commits/master)
 <!-- 
     [![Build Status](https://travis-ci.org/fvafrCU/fakemake.svg?branch=master)](https://travis-ci.org/fvafrCU/fakemake)
     [![Coverage Status](https://codecov.io/github/fvafrCU/fakemake/coverage.svg?branch=master)](https://codecov.io/github/fvafrCU/fakemake?branch=master)

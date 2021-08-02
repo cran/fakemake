@@ -1,3 +1,7 @@
+# fakemake 1.10.2
+
+* Removed LazyData from file DESCRIPTION.
+
 # fakemake 1.10.1
 
 * Bugfix on warnings and errors:

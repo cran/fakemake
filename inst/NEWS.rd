@@ -1,7 +1,13 @@
 \name{NEWS}
 \title{NEWS}
 
-\section{Changes in version 1.10.0.9000}{
+\section{Changes in version 1.10.2}{
+\itemize{
+\item Removed LazyData from file DESCRIPTION.
+}
+}
+
+\section{Changes in version 1.10.1}{
 \itemize{
 \item Bugfix on warnings and errors:
 These were overwriting the normal logging output, we now use

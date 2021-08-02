@@ -92,7 +92,7 @@
 #' RUnit::checkTrue(identical(result, expectation))
 #'
 #' #% touch source file and rerun
-#' fakemake:::touch(file.path(src, "bar.R"))
+#' fritools::touch(file.path(src, "bar.R"))
 #' expectation <- make_list[[4]][["target"]]
 #' result <- make(make_list[[4]][["target"]], make_list)
 #' RUnit::checkTrue(identical(result, expectation))
