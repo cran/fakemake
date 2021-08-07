@@ -1,3 +1,10 @@
+# fakemake 1.10.3
+
+* Explicitly import `fritools::touch()` as CRAN flavours
+  r-devel-linux-x86\_64-fedora-clang, r-devel-linux-x86\_64-fedora-gcc, 
+  r-patched-solaris-x86, r-release-macos-x86\_64 and r-oldrel-macos-x86\_64
+  give a note elsewise.
+
 # fakemake 1.10.2
 
 * Removed LazyData from file DESCRIPTION.

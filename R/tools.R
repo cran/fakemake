@@ -2,8 +2,8 @@
 #'
 #' See \code{\link[fritools:touch]{fritools::touch}}.
 #'
-#' @param path Path to the file to be touched
-#' @return The return value of \code{\link{file.copy}}.
+#' @param ... Arguments passed to \code{\link[fritools:touch]{fritools::touch}}.
+#' @return The return value of \code{\link[fritools:touch]{fritools::touch}}.
 #' @export
 #' @keywords internal
-touch <- fritools::touch
+touch <- function(...) return(fritools::touch(...))

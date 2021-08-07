@@ -4,13 +4,13 @@
 \alias{touch}
 \title{Mock the Unix \command{touch} utility}
 \usage{
-touch(path)
+touch(...)
 }
 \arguments{
-\item{path}{Path to the file to be touched}
+\item{...}{Arguments passed to \code{\link[fritools:touch]{fritools::touch}}.}
 }
 \value{
-The return value of \code{\link{file.copy}}.
+The return value of \code{\link[fritools:touch]{fritools::touch}}.
 }
 \description{
 See \code{\link[fritools:touch]{fritools::touch}}.
