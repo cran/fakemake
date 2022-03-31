@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{NEWS}
 
+\section{Changes in version 1.10.4}{
+\itemize{
+\item Fixed testing for \code{makelist2igraph()} (for igraph 1.3.0).
+}
+}
+
 \section{Changes in version 1.10.3}{
 \itemize{
 \item Explicitly import \code{fritools::touch()} as CRAN flavours

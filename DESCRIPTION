@@ -1,6 +1,6 @@
 Package: fakemake
 Title: Mock the Unix Make Utility
-Version: 1.10.3
+Version: 1.10.4
 Authors@R: 
     person(given = "Andreas Dominik",
            family = "Cullmann",
@@ -20,8 +20,8 @@ VignetteBuilder: knitr, rasciidoc
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-08-06 19:20:31 UTC; qwer
+Packaged: 2022-03-31 12:16:37 UTC; qwer
 Author: Andreas Dominik Cullmann [aut, cre]
 Maintainer: Andreas Dominik Cullmann <fvafrcu@mailbox.org>
 Repository: CRAN
-Date/Publication: 2021-08-07 06:20:02 UTC
+Date/Publication: 2022-03-31 12:50:02 UTC

@@ -1,3 +1,7 @@
+# fakemake 1.10.4
+
+* Fixed testing for `makelist2igraph()` (for igraph 1.3.0). 
+
 # fakemake 1.10.3
 
 * Explicitly import `fritools::touch()` as CRAN flavours
