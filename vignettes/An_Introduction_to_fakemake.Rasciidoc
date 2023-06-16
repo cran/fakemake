@@ -1,6 +1,6 @@
 = An Introduction to _fakemake_
 :Author: "Andreas Dominik Cullmann"
-:Date: 2020-12-01, 14:18:19
+:Date: 2023-06-14, 12:55:05
 :toc2:
 
 ////
@@ -232,9 +232,6 @@ be built:
 ml[[i]][".PHONY"]  <- TRUE
 withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
 //end.rcode
-
-==  Building Packages
-See vignette https://cran.r-project.org/package=fakemake/vignettes/Building_Packages.html[Building *R* Packages Using _fakemake_].
 
 == References
 - [[[Powers]]]

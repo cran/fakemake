@@ -1,3 +1,9 @@
+# fakemake 1.11.0
+
+* Package `fritools` back on CRAN.
+* Removed suggested package `packager`.
+* Removed deprecated function `package_makelist()`.
+
 # fakemake 1.10.4
 
 * Fixed testing for `makelist2igraph()` (for igraph 1.3.0). 

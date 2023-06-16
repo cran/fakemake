@@ -9,7 +9,7 @@
 #' @examples
 #' str(provide_make_list("minimal"))
 #' visualize(provide_make_list("minimal"))
-provide_make_list <- function(type = c("minimal", "testing", "vignette"), prune = TRUE, 
+provide_make_list <- function(type = c("minimal", "testing"), prune = TRUE, 
                               clean_sink = FALSE) {
     type <- match.arg(type)
     ml <- switch(type,
@@ -21,7 +21,6 @@ provide_make_list <- function(type = c("minimal", "testing", "vignette"), prune 
                                                package = "fakemake"),
                                    clean_sink)
                  },
-                 "vignette" = add_log(package_makelist()),
                  throw(paste0("type ", type, " not known!"))
                  )
     if (isTRUE(prune)) ml <- prune_list(ml)

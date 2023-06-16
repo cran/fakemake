@@ -770,7 +770,7 @@ asciidoc.install(2);
 <div id="header">
 <h1>An Introduction to <em>fakemake</em></h1>
 <span id="author">"Andreas Dominik Cullmann"</span><br />
-<span id="revdate">2020-12-01, 14:18:19</span>
+<span id="revdate">2023-06-14, 12:55:05</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -925,10 +925,10 @@ show_file_mtime()</tt></pre></div></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>##                                        mtime
-## /tmp/RtmpK8kWr5/a1.Rout  2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/a2.Rout  2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/all.Rout 2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/b1.Rout  2022-03-31 14:16:33</code></pre>
+## /tmp/RtmpzU79Kz/a1.Rout  2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/a2.Rout  2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/all.Rout 2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/b1.Rout  2023-06-16 10:59:19</code></pre>
 </div></div>
 <div class="paragraph"><p>If we wait for a second and rerun the build process, we get:</p></div>
 <div class="listingblock">
@@ -952,10 +952,10 @@ http://www.gnu.org/software/src-highlite -->
 <div class="listingblock">
 <div class="content">
 <pre><code>##                                        mtime
-## /tmp/RtmpK8kWr5/a1.Rout  2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/a2.Rout  2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/all.Rout 2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/b1.Rout  2022-03-31 14:16:33</code></pre>
+## /tmp/RtmpzU79Kz/a1.Rout  2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/a2.Rout  2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/all.Rout 2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/b1.Rout  2023-06-16 10:59:19</code></pre>
 </div></div>
 <div class="paragraph"><p>Nothing changed. Good.
 Now, we change one file down the build chain:</p></div>
@@ -979,10 +979,10 @@ http://www.gnu.org/software/src-highlite -->
 <div class="listingblock">
 <div class="content">
 <pre><code>##                                        mtime
-## /tmp/RtmpK8kWr5/a1.Rout  2022-03-31 14:16:34
-## /tmp/RtmpK8kWr5/a2.Rout  2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/all.Rout 2022-03-31 14:16:34
-## /tmp/RtmpK8kWr5/b1.Rout  2022-03-31 14:16:34</code></pre>
+## /tmp/RtmpzU79Kz/a1.Rout  2023-06-16 10:59:20
+## /tmp/RtmpzU79Kz/a2.Rout  2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/all.Rout 2023-06-16 10:59:20
+## /tmp/RtmpzU79Kz/b1.Rout  2023-06-16 10:59:20</code></pre>
 </div></div>
 <div class="paragraph"><p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets
 get rebuilt while a2.Rout stays untouched.</p></div>
@@ -1007,10 +1007,10 @@ http://www.gnu.org/software/src-highlite -->
 <div class="listingblock">
 <div class="content">
 <pre><code>##                                        mtime
-## /tmp/RtmpK8kWr5/a1.Rout  2022-03-31 14:16:35
-## /tmp/RtmpK8kWr5/a2.Rout  2022-03-31 14:16:33
-## /tmp/RtmpK8kWr5/all.Rout 2022-03-31 14:16:35
-## /tmp/RtmpK8kWr5/b1.Rout  2022-03-31 14:16:34</code></pre>
+## /tmp/RtmpzU79Kz/a1.Rout  2023-06-16 10:59:21
+## /tmp/RtmpzU79Kz/a2.Rout  2023-06-16 10:59:19
+## /tmp/RtmpzU79Kz/all.Rout 2023-06-16 10:59:21
+## /tmp/RtmpzU79Kz/b1.Rout  2023-06-16 10:59:20</code></pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -1267,12 +1267,6 @@ withr::with_dir(tempdir(), print(fakemake::make(<span style="color: #FF0000">"a1
 </div>
 </div>
 <div class="sect1">
-<h2 id="_building_packages">Building Packages</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>See vignette <a href="https://cran.r-project.org/package=fakemake/vignettes/Building_Packages.html">Building <strong>R</strong> Packages Using <em>fakemake</em></a>.</p></div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_references">References</h2>
 <div class="sectionbody">
 <div class="ulist"><ul>
@@ -1291,7 +1285,7 @@ withr::with_dir(tempdir(), print(fakemake::make(<span style="color: #FF0000">"a1
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2022-03-31 14:16:35 CEST
+ 2023-06-16 10:59:21 CEST
 </div>
 </div>
 </body>

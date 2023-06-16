@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{NEWS}
 
+\section{Changes in version 1.11.0}{
+\itemize{
+\item Package \code{fritools} back on CRAN.
+\item Removed suggested package \code{packager}.
+\item Removed deprecated function \code{package_makelist()}.
+}
+}
+
 \section{Changes in version 1.10.4}{
 \itemize{
 \item Fixed testing for \code{makelist2igraph()} (for igraph 1.3.0).

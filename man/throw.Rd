@@ -24,7 +24,4 @@ Throws a condition of class c("error", "fakemake", "condition").
 \details{
 We use this condition as an error dedicated to \pkg{ fakemake.}
 }
-\examples{
-tryCatch(fakemake:::throw("Hello error!"), fakemake = function(e) return(e))
-}
 \keyword{internal}
