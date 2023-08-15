@@ -1,3 +1,7 @@
+# fakemake 1.11.1
+
+* Fixed CRAN notes on Escaped LaTeX specials.
+
 # fakemake 1.11.0
 
 * Package `fritools` back on CRAN.

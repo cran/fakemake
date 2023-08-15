@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{NEWS}
 
+\section{Changes in version 1.11.1}{
+\itemize{
+\item Fixed CRAN notes on Escaped LaTeX specials.
+}
+}
+
 \section{Changes in version 1.11.0}{
 \itemize{
 \item Package \code{fritools} back on CRAN.
@@ -18,8 +24,8 @@
 \section{Changes in version 1.10.3}{
 \itemize{
 \item Explicitly import \code{fritools::touch()} as CRAN flavours
-r-devel-linux-x86\_64-fedora-clang, r-devel-linux-x86\_64-fedora-gcc,
-r-patched-solaris-x86, r-release-macos-x86\_64 and r-oldrel-macos-x86\_64
+r-devel-linux-x86_64-fedora-clang, r-devel-linux-x86_64-fedora-gcc,
+r-patched-solaris-x86, r-release-macos-x86_64 and r-oldrel-macos-x86_64
 give a note elsewise.
 }
 }
@@ -120,7 +126,7 @@ and runit.
 \item Changed coverage code in the package makelists to detach package after
 covering.
 \item Splitted the vignette into two.
-\item Fixed target "build" in provide\_make\_list().
+\item Fixed target "build" in provide_make_list().
 \item Fixed tryCatch-Targets to write to log-directory.
 \item For verbose = TRUE, the current make target is now being reported.
 \item Package make target cyclocomp now requires roxygen.
@@ -149,7 +155,7 @@ vignette.
 
 \section{Changes in version 1.2.0}{
 \itemize{
-\item Added make\_list "standard", enhancing "package" by adding the creation of the
+\item Added make_list "standard", enhancing "package" by adding the creation of the
 log directory and using it as prerequisite.
 }
 }
@@ -157,9 +163,9 @@ log directory and using it as prerequisite.
 \section{Changes in version 1.1.0}{
 \itemize{
 \item Fixed recursive treatment of argument \code{verbose} to function \code{make}.
-\item Fixed internal function \verb{package\\_makelist} to using \code{devtools::test} instead
+\item Fixed internal function \code{package_makelist} to using \code{devtools::test} instead
 \code{testthat::test_package} directly (the former is a wrapper to the latter).
-\item Now \verb{package\\_makelist} is printing output from roxygen2, testthat, cleanr and
+\item Now \code{package_makelist} is printing output from roxygen2, testthat, cleanr and
 devtools::build to harmonize logs.
 }
 }
